@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'My Orders',
-  description: 'View and track all your Ethnic Sparkles jewelry orders.',
+  description: 'View and track all your NS Collection jewelry orders.',
   robots: { index: false, follow: false },
 }
 

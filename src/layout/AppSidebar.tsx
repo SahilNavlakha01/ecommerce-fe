@@ -179,7 +179,7 @@ const AppSidebar: React.FC = () => {
               </div>
             </div>
             <div className="mt-3 px-3 text-center">
-              <p className="text-[10px] text-gray-500 font-medium">© {currentYear} Ethnic Sparkles</p>
+              <p className="text-[10px] text-gray-500 font-medium">© {currentYear} NS Collection</p>
             </div>
           </div>
         )}

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Your Shopping Cart',
-  description: 'Review your selected Ethnic Sparkles fashion jewelry pieces and proceed to secure checkout.',
+  description: 'Review your selected NS Collection fashion jewelry pieces and proceed to secure checkout.',
   robots: { index: false, follow: false },
 }
 

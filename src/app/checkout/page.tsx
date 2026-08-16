@@ -499,9 +499,9 @@ export default function CheckoutPage() {
         key: RAZORPAY_KEY,
         amount: Math.round(amount),
         currency: 'INR',
-        name: 'Ethnic Sparkles',
+        name: 'NS Collection',
         description: 'Jewelry Purchase',
-        image: 'https://ethnicsparkles.com/images/LogoNew.png',
+        image: 'https://nscollection.com/images/LogoNew.png',
         order_id: razorpayOrderId,
         handler: async function (response: any) {
           rzpCallbackFired = true
@@ -659,9 +659,9 @@ export default function CheckoutPage() {
         key: RAZORPAY_KEY,
         amount: Math.round(codCharges * 100),
         currency: 'INR',
-        name: 'Ethnic Sparkles',
+        name: 'NS Collection',
         description: 'COD Handling Charge',
-        image: 'https://ethnicsparkles.com/images/LogoNew.png',
+        image: 'https://nscollection.com/images/LogoNew.png',
         order_id: razorpayOrderId,
         handler: async function (response: any) {
           const paymentData = {

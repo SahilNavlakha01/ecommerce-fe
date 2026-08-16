@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PolicyLayout from '../components/PolicyLayout'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Ethnic Sparkle',
-  description: 'Privacy Policy for Ethnic Sparkle — how we collect, use, and safeguard your data.',
+  title: 'Privacy Policy | NS Collection',
+  description: 'Privacy Policy for NS Collection — how we collect, use, and safeguard your data.',
 }
 
 export default function PrivacyPolicy() {
@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
     <PolicyLayout
       title="Privacy Policy"
       effectiveDate="20/04/2026"
-      intro="At Ethnic Sparkle (EEAS Lifestyle), we value your trust and are committed to protecting your personal information."
+      intro="At NS Collection, we value your trust and are committed to protecting your personal information."
       sections={[
         {
           title: 'Information We Collect',

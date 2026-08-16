@@ -4,16 +4,16 @@ import { Gem, ShieldCheck, Heart, Sparkles, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Us | Ethnic Sparkles',
-  description: 'Discover the story behind Ethnic Sparkles — where traditional Indian craftsmanship meets contemporary fashion jewelry.',
-  openGraph: { title: 'About Ethnic Sparkles', url: '/about' },
+  title: 'About Us | NS Collection',
+  description: 'Discover the story behind NS Collection — where traditional Indian craftsmanship meets contemporary fashion jewelry.',
+  openGraph: { title: 'About NS Collection', url: '/about' },
 }
 
 const values = [
   { icon: Gem, title: 'Modern Craftsmanship', desc: 'Every piece is crafted with best of inputs be it design or built.' },
   { icon: ShieldCheck, title: 'Quality Assured', desc: 'Premium materials and rigorous quality checks on every collection.' },
   { icon: Heart, title: 'Designed with Love', desc: 'Passion poured into every curve, stone setting, and finish.' },
-  { icon: Sparkles, title: 'Trend-Forward', desc: 'Timeless ethnic motifs blended with modern silhouettes.' },
+  { icon: Sparkles, title: 'Trend-Forward', desc: 'Timeless motifs blended with modern silhouettes.' },
 ]
 
 const stats = [
@@ -38,7 +38,7 @@ export default function About() {
               Jewelry That Speaks<br className="hidden md:block" /> Your Language
             </h1>
             <p className="text-white/75 text-lg leading-relaxed">
-              At Ethnic Sparkles, we believe fashion jewelry is more than adornment — it's an expression of culture, confidence, and individuality.
+              At NS Collection, we believe fashion jewelry is more than adornment — it's an expression of culture, confidence, and individuality.
             </p>
           </div>
         </section>
@@ -62,19 +62,19 @@ export default function About() {
               <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[#026670]">Who We Are</span>
               <h2 className="text-3xl font-bold text-gray-900 mt-2 mb-5">Tradition Meets Modern Elegance</h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                At Ethnic Sparkle, we celebrate the timeless charm of tradition with a touch of modern elegance. As a proud part of EEAS Lifestyle, our journey is rooted in a simple yet powerful idea — to bring the richness of ethnic artistry into everyday style.
+                At NS Collection, we celebrate the timeless charm of tradition with a touch of modern elegance. Our journey is rooted in a simple yet powerful idea — to bring the richness of artistry into everyday style.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
                 We believe jewellery is more than an accessory; it is an expression of identity, culture, and emotion. Each piece we curate reflects a story — inspired by heritage, crafted with care, and designed for the contemporary individual who values authenticity and grace.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                From statement pieces that capture attention to subtle designs that whisper elegance, Ethnic Sparkle blends tradition with trend, ensuring there is something for every mood, occasion, and personality.
+                From statement pieces that capture attention to subtle designs that whisper elegance, NS Collection blends tradition with trend, ensuring there is something for every mood, occasion, and personality.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Driven by a passion for quality and aesthetics, we are committed to offering designs that not only enhance your look but also resonate with your spirit. Whether it’s a celebration, a special moment, or simply everyday elegance — we are here to add that perfect sparkle.
+                Driven by a passion for quality and aesthetics, we are committed to offering designs that not only enhance your look but also resonate with your spirit. Whether it’s a celebration, a special moment, or simply everyday elegance — we are here to add that perfect touch.
               </p>
               <p className="text-[#026670] font-bold">
-                Ethnic Sparkle — where tradition shines, and style evolves.
+                NS Collection — where tradition shines, and style evolves.
               </p>
             </div>
             <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#026670]/10 to-[#fce181]/30 flex items-center justify-center border border-[#026670]/10">

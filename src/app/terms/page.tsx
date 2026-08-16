@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PolicyLayout from '../components/PolicyLayout'
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | Ethnic Sparkle',
-  description: 'Terms & Conditions for Ethnic Sparkle — guidelines for using our website and services.',
+  title: 'Terms & Conditions | NS Collection',
+  description: 'Terms & Conditions for NS Collection — guidelines for using our website and services.',
 }
 
 export default function TermsAndConditions() {
@@ -45,7 +45,7 @@ export default function TermsAndConditions() {
         {
           title: 'Intellectual Property',
           content: (
-            <p>All content on this website (images, logos, text, designs) is the property of Ethnic Sparkle / EEAS Lifestyle. Unauthorized use or reproduction is strictly prohibited.</p>
+            <p>All content on this website (images, logos, text, designs) is the property of NS Collection. Unauthorized use or reproduction is strictly prohibited.</p>
           ),
         },
         {

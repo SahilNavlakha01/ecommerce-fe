@@ -14,16 +14,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       next: { revalidate: 0 },
       headers: { 'Content-Type': 'application/json' },
     })
-    if (!res.ok) return { title: 'Product | Ethnic Sparkles' }
+    if (!res.ok) return { title: 'Product | NS Collection' }
 
     const json = await res.json()
-    if (json?.status !== 200 || !json?.data) return { title: 'Product | Ethnic Sparkles' }
+    if (json?.status !== 200 || !json?.data) return { title: 'Product | NS Collection' }
 
     const product = json.data
     const name: string = product.name || 'Jewelry'
     const description: string = (
       product.description ||
-      `Buy ${name} at Ethnic Sparkles. Premium quality jewelry with BIS hallmark.`
+      `Buy ${name} at NS Collection. Premium quality jewelry with BIS hallmark.`
     ).slice(0, 160)
 
     const firstImage: string =
@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     }
   } catch (err: any) {
-    return { title: 'Product | Ethnic Sparkles' }
+    return { title: 'Product | NS Collection' }
   }
 }
 

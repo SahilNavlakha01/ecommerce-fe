@@ -15,7 +15,7 @@ export default function TopBanner() {
       try {
         const parsedData = JSON.parse(decodeURIComponent(userData))
         setIsB2bUser(parsedData.userRole === 2)
-      } catch {}
+      } catch { }
     }
   }, [])
 

@@ -21,13 +21,13 @@ export default function NavigationLinks() {
 
       {loading
         ? [...Array(4)].map((_, i) => (
-            <div key={i} className="h-5 w-20 bg-gray-200 rounded animate-pulse" />
-          ))
+          <div key={i} className="h-5 w-20 bg-gray-200 rounded animate-pulse" />
+        ))
         : categories.map((cat) => (
-            <NavLink key={cat.id} href={`/shop?categoryId=${cat.id}&categoryName=${encodeURIComponent(cat.name)}`}>
-              {cat.name}
-            </NavLink>
-          ))
+          <NavLink key={cat.id} href={`/shop?categoryId=${cat.id}&categoryName=${encodeURIComponent(cat.name)}`}>
+            {cat.name}
+          </NavLink>
+        ))
       }
     </nav>
   )

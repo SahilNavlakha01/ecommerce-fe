@@ -1,7 +1,7 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://ethnicsparkles.com'
-export const SITE_NAME = 'Ethnic Sparkles'
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nscollection.com'
+export const SITE_NAME = 'NS Collection'
 export const SITE_DESCRIPTION =
-  'Discover exquisite handcrafted jewelry at Ethnic Sparkles. Premium quality rings, necklaces, earrings with BIS hallmark and lifetime warranty.'
+  'Discover exquisite handcrafted jewelry at NS Collection. Premium quality rings, necklaces, earrings with BIS hallmark and lifetime warranty.'
 
 export const defaultMetadata = {
   metadataBase: new URL(SITE_URL),
@@ -12,7 +12,7 @@ export const defaultMetadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     'jewelry', 'rings', 'necklaces', 'earrings', 'gold jewelry',
-    'diamond jewelry', 'ethnic jewelry', 'handcrafted jewelry',
+    'diamond jewelry', 'fashion jewelry', 'handcrafted jewelry',
     'BIS hallmark', 'premium jewelry India',
   ],
   authors: [{ name: SITE_NAME }],
@@ -32,7 +32,7 @@ export const defaultMetadata = {
     description: SITE_DESCRIPTION,
     images: ['/images/og-default.jpg'],
   },
-  icons: { icon: '/images/LogoNew.jpeg' },
+  icons: { icon: '/images/LogoNew.png' },
 }
 
 export const organizationSchema = {
@@ -40,7 +40,7 @@ export const organizationSchema = {
   '@type': 'JewelryStore',
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/images/LogoNew.jpeg`,
+  logo: `${SITE_URL}/images/LogoNew.png`,
   description: SITE_DESCRIPTION,
   address: {
     '@type': 'PostalAddress',

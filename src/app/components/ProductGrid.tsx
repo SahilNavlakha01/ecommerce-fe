@@ -353,7 +353,7 @@ export default function ProductGrid() {
         const pos = calculatePosition()
         return (
           <>
-        <div className="fixed inset-0 z-40" onClick={closeOverlays} />
+            <div className="fixed inset-0 z-40" onClick={closeOverlays} />
             <div
               className="fixed z-50 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
               style={{ top: `${pos.top}px`, left: `${pos.left}px` }}
@@ -424,7 +424,7 @@ export default function ProductGrid() {
             {(() => {
               const activeFiltersCount = Object.values(selectedFilters).reduce((count, selections) =>
                 count + (selections ? selections.length : 0), 0
-                ) + (isPriceFilterActive(priceRange) ? 1 : 0)
+              ) + (isPriceFilterActive(priceRange) ? 1 : 0)
               return activeFiltersCount > 0 ? (
                 <span className="bg-teal-600 text-white text-xs font-bold px-2 py-1 rounded-full">
                   {activeFiltersCount}
@@ -515,69 +515,69 @@ export default function ProductGrid() {
               <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mt-2"></div>
             </div>
 
-              <div className="flex-1 overflow-y-auto p-4 space-y-6">
-                <PriceRangeControl
-                  value={draftPriceRange}
-                  onChange={setDraftPriceRange}
-                  onApply={(range) => {
-                    applyPriceRangeChange(range)
-                    closeOverlays()
-                  }}
-                  onReset={() => setDraftPriceRange(resetPriceRange())}
-                  className="w-full"
-                />
+            <div className="flex-1 overflow-y-auto p-4 space-y-6">
+              <PriceRangeControl
+                value={draftPriceRange}
+                onChange={setDraftPriceRange}
+                onApply={(range) => {
+                  applyPriceRangeChange(range)
+                  closeOverlays()
+                }}
+                onReset={() => setDraftPriceRange(resetPriceRange())}
+                className="w-full"
+              />
 
-                {Object.keys(filterConfigs).map((category) => {
-                  const options = filterOptions[category] || []
-                  return (
-                    <div key={category}>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-3 font-heading">{category}</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {options.map((option) => {
-                          const isSelected = selectedFilters[category]?.includes(option.name) || false
-                          return (
-                            <button
-                              key={option.id}
-                              onClick={() => handleFilterChange(category, option.name)}
-                              className={`px-3 py-2 rounded-lg border transition-colors ${isSelected
-                                ? 'bg-teal-600 text-white border-teal-600'
-                                : 'bg-white text-gray-700 border-gray-300 hover:border-teal-300'
-                                }`}
-                            >
-                              {option.name} ({option.productCount || 0})
-                            </button>
-                          )
-                        })}
-                      </div>
+              {Object.keys(filterConfigs).map((category) => {
+                const options = filterOptions[category] || []
+                return (
+                  <div key={category}>
+                    <h4 className="text-sm font-semibold text-gray-900 mb-3 font-heading">{category}</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {options.map((option) => {
+                        const isSelected = selectedFilters[category]?.includes(option.name) || false
+                        return (
+                          <button
+                            key={option.id}
+                            onClick={() => handleFilterChange(category, option.name)}
+                            className={`px-3 py-2 rounded-lg border transition-colors ${isSelected
+                              ? 'bg-teal-600 text-white border-teal-600'
+                              : 'bg-white text-gray-700 border-gray-300 hover:border-teal-300'
+                              }`}
+                          >
+                            {option.name} ({option.productCount || 0})
+                          </button>
+                        )
+                      })}
                     </div>
-                  )
-                })}
-              </div>
+                  </div>
+                )
+              })}
+            </div>
 
-              <div className="flex-shrink-0 p-4 border-t space-y-3">
+            <div className="flex-shrink-0 p-4 border-t space-y-3">
               {(Object.values(selectedFilters).some(selections => selections && selections.length > 0) || isPriceFilterActive(priceRange)) && (
-                  <button
-                    onClick={clearAllFilters}
-                    className="w-full py-2 text-red-600 hover:text-red-700 font-medium transition-colors"
-                  >
-                    Clear All Filters
-                  </button>
-                )}
                 <button
-                  onClick={closeOverlays}
-                  className="w-full bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
+                  onClick={clearAllFilters}
+                  className="w-full py-2 text-red-600 hover:text-red-700 font-medium transition-colors"
                 >
-                  Apply Filters
+                  Clear All Filters
                 </button>
-              </div>
+              )}
+              <button
+                onClick={closeOverlays}
+                className="w-full bg-teal-600 text-white py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
+              >
+                Apply Filters
+              </button>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
       {/* Mobile Sort Panel - Bottom Sheet */}
       {openDropdown === 'mobile-sort' && (
         <div className="fixed inset-0 z-50">
-        <div className="absolute inset-0 bg-opacity-20" onClick={closeOverlays}></div>
+          <div className="absolute inset-0 bg-opacity-20" onClick={closeOverlays}></div>
           <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-xl">
             <div className="p-4 border-b">
               <div className="flex items-center justify-between">

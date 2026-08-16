@@ -39,7 +39,7 @@ export default function Hero() {
         nextSlide()
       }, 6000)
     }
-    
+
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current)
@@ -92,7 +92,7 @@ export default function Hero() {
     const distance = touchStart - touchEnd
     const isLeftSwipe = distance > 50
     const isRightSwipe = distance < -50
-    
+
     if (isLeftSwipe) {
       nextSlide()
     }
@@ -107,13 +107,13 @@ export default function Hero() {
       if (e.key === 'ArrowLeft') prevSlide()
       if (e.key === 'ArrowRight') nextSlide()
     }
-    
+
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
   return (
-    <div 
+    <div
       className="relative w-full h-[32vh] min-h-[240px] max-h-[360px] sm:h-[52vh] sm:min-h-[420px] lg:h-[78vh] lg:min-h-[620px] overflow-hidden bg-[#f8f5ee]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -123,69 +123,68 @@ export default function Hero() {
     >
       {slides.length > 0 && (
         <>
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={slides[currentSlide]?.image}
-          alt="Homepage banner"
-          className={`w-full h-full object-cover object-center transition-opacity duration-200 ease-out ${isAnimating ? 'opacity-60' : 'opacity-100'} brightness-[0.96] sm:brightness-100`}
-        />
-      </div>
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src={slides[currentSlide]?.image}
+              alt="Homepage banner"
+              className={`w-full h-full object-cover object-center transition-opacity duration-200 ease-out ${isAnimating ? 'opacity-60' : 'opacity-100'} brightness-[0.96] sm:brightness-100`}
+            />
+          </div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/12 via-black/0 to-black/8 sm:from-black/10 sm:via-black/0 sm:to-black/5 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/12 via-black/0 to-black/8 sm:from-black/10 sm:via-black/0 sm:to-black/5 pointer-events-none" />
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1.5 sm:space-x-3 z-30">
-        {slides.map((_, index) => (
+          {/* Slide Indicators */}
+          <div className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1.5 sm:space-x-3 z-30">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleSlideChange(index)}
+                className={`transition-all duration-300 ${index === currentSlide
+                    ? 'w-7 sm:w-10 h-1.5 sm:h-2 bg-white rounded-full shadow-sm'
+                    : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/55 rounded-full hover:bg-white/80'
+                  }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Navigation Arrows */}
           <button
-            key={index}
-            onClick={() => handleSlideChange(index)}
-            className={`transition-all duration-300 ${
-              index === currentSlide 
-                ? 'w-7 sm:w-10 h-1.5 sm:h-2 bg-white rounded-full shadow-sm' 
-                : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/55 rounded-full hover:bg-white/80'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+            onClick={prevSlide}
+            className="hidden sm:flex absolute left-4 sm:left-6 top-1/2 transform -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
+            aria-label="Previous slide"
+          >
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
 
-      {/* Navigation Arrows */}
-      <button 
-        onClick={prevSlide}
-        className="hidden sm:flex absolute left-4 sm:left-6 top-1/2 transform -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
-        aria-label="Previous slide"
-      >
-        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-        </svg>
-      </button>
-      
-      <button 
-        onClick={nextSlide}
-        className="hidden sm:flex absolute right-4 sm:right-6 top-1/2 transform -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
-        aria-label="Next slide"
-      >
-        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
+          <button
+            onClick={nextSlide}
+            className="hidden sm:flex absolute right-4 sm:right-6 top-1/2 transform -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-full items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110"
+            aria-label="Next slide"
+          >
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
 
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 h-0.5 sm:h-1 bg-white/20 z-30 w-full">
-        <div
-          className="h-full bg-white transition-all duration-100 ease-linear"
-          style={{
-            width: '100%',
-            // use explicit longhand animation properties to avoid mixing shorthand and longhand
-            animationName: !isPaused ? 'progress' : 'none',
-            animationDuration: !isPaused ? '6000ms' : '0ms',
-            animationTimingFunction: !isPaused ? 'linear' : 'initial',
-            animationIterationCount: !isPaused ? 'infinite' : '1',
-            animationDelay: '0ms'
-          }}
-        ></div>
-      </div>
+          {/* Progress Bar */}
+          <div className="absolute bottom-0 left-0 h-0.5 sm:h-1 bg-white/20 z-30 w-full">
+            <div
+              className="h-full bg-white transition-all duration-100 ease-linear"
+              style={{
+                width: '100%',
+                // use explicit longhand animation properties to avoid mixing shorthand and longhand
+                animationName: !isPaused ? 'progress' : 'none',
+                animationDuration: !isPaused ? '6000ms' : '0ms',
+                animationTimingFunction: !isPaused ? 'linear' : 'initial',
+                animationIterationCount: !isPaused ? 'infinite' : '1',
+                animationDelay: '0ms'
+              }}
+            ></div>
+          </div>
         </>
       )}
     </div>

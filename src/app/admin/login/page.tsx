@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { LoginUser } from '@/Services/PostService'
 import { setAuthCookie } from '@/utils/auth'
+import Link from 'next/link'
+import ProfessionalLogo from '@/components/ui/ProfessionalLogo'
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -37,7 +39,12 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-transparent flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-transparent flex flex-col items-center justify-center px-4 py-8">
+      <div className="mb-6">
+        <Link href="/" className="transition-transform hover:scale-105">
+          <ProfessionalLogo size="xl" showText />
+        </Link>
+      </div>
       <div className="w-full max-w-[460px] overflow-hidden rounded-[28px] border border-gray-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
         <div className="h-1.5 w-full bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500" />
         <div className="p-6 sm:p-8">
@@ -54,7 +61,7 @@ export default function AdminLoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="ethnicsparklesforyou@gmail.com"
+                placeholder="support@nscollection.com"
                 className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3.5 text-sm outline-none transition placeholder:text-gray-400 focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100"
                 autoComplete="email"
                 required

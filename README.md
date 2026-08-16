@@ -1,4 +1,4 @@
-# Ethnic Sparkles - Luxury Jewelry E-Commerce Platform
+# NS Collection - Luxury Jewelry E-Commerce Platform
 
 A modern, production-ready Next.js e-commerce platform for luxury jewelry with advanced features including real-time inventory, bulk product management, and seamless checkout experience.
 

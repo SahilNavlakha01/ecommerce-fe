@@ -59,8 +59,8 @@ export default function PolicyLayout({ title, effectiveDate, intro, sections }: 
             <p className="font-semibold text-[#026670] mb-2">Need help?</p>
             <p>
               Email:{' '}
-              <a href="mailto:ethnicsparklesforyou@gmail.com" className="text-[#026670] hover:underline font-medium">
-                ethnicsparklesforyou@gmail.com
+              <a href="mailto:support@nscollection.com" className="text-[#026670] hover:underline font-medium">
+                support@nscollection.com
               </a>
             </p>
             <p className="mt-1">

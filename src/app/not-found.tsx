@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: '404 - Page Not Found',
-  description: 'The page you are looking for does not exist. Browse our fashion jewelry collection at Ethnic Sparkles.',
+  description: 'The page you are looking for does not exist. Browse our fashion jewelry collection at NS Collection.',
   robots: { index: false, follow: true },
 }
 

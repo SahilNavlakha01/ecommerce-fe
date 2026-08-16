@@ -10,6 +10,7 @@ import { getGuestCart } from '@/utils/guestCart'
 import { migrateGuestCartToServer } from '@/utils/migrateGuestCart'
 import AccountTypeSelector from '@/components/ui/AccountTypeSelector'
 import { warmupServer } from '@/utils/serverWarmup'
+import ProfessionalLogo from '@/components/ui/ProfessionalLogo'
 
 type Step = 'phone' | 'otp' | 'choose'
 
@@ -204,9 +205,9 @@ export default function OtpLoginPage() {
       <main className="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-xl items-center justify-center">
           <div className="w-full">
-            <div className="mb-5 flex justify-center">
-              <Link href="/">
-                <Image src="/images/LogoNew.png" alt="Ethnic Sparkles" width={150} height={100} className="object-contain" priority />
+            <div className="mb-6 flex justify-center">
+              <Link href="/" className="transition-transform hover:scale-105">
+                <ProfessionalLogo size="xl" showText />
               </Link>
             </div>
 
@@ -356,7 +357,7 @@ export default function OtpLoginPage() {
                 )}
 
                 <div className="mt-8 flex flex-col items-center gap-3 border-t border-gray-100 pt-6">
-                  <p className="text-xs text-gray-400">© {currentYear} Ethnic Sparkles · Presented by EEAS Lifestyle</p>
+                  <p className="text-xs text-gray-400">© {currentYear} NS Collection</p>
                 </div>
               </div>
             </div>

@@ -1,13 +1,13 @@
 // Base URL configuration
 export const BASE_URL = "http://localhost:5001/api/"
 // export const BASE_URL = "https://jwellerybackend-production.up.railway.app/api/"
-// export const BASE_URL = "https://api.ethnicsparkles.com/api/"
+// export const BASE_URL = "https://api.nscollection.com/api/"
 
 
 // WebSocket URL
 // export const WS_BASE_URL = "ws://localhost:5000"
 // export const WS_BASE_URL = "wss://jwellerybackend-production.up.railway.app"
-export const WS_BASE_URL = "wss://api.ethnicsparkles.com"
+export const WS_BASE_URL = "wss://api.nscollection.com"
 // USER endpoints
 export const REGISTER_USER = BASE_URL + "users/register"
 export const LOGIN_USER = BASE_URL + "users/login"

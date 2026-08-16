@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'My Addresses',
-  description: 'Manage your saved delivery addresses on Ethnic Sparkles.',
+  description: 'Manage your saved delivery addresses on NS Collection.',
   robots: { index: false, follow: false },
 }
 

@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export default function SearchBar({ searchQuery, setSearchQuery, isMobile = false }) {
   const router = useRouter()
-  
+
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim()) {

@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { SendOtpPasswordReset } from '@/Services/PostService'
+import ProfessionalLogo from '@/components/ui/ProfessionalLogo'
 
 export default function ForgotPasswordPage() {
   const currentYear = new Date().getFullYear()
@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-500/30 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-teal-900/40 to-transparent" />
         <Link href="/" className="relative z-10">
-          <Image src="/images/LogoNew.png" alt="Ethnic Sparkles" width={160} height={107} className="object-contain brightness-0 invert" priority />
+          <ProfessionalLogo size="lg" variant="white" showText />
         </Link>
         <div className="relative z-10 space-y-6">
           <div className="space-y-3">
@@ -58,14 +58,14 @@ export default function ForgotPasswordPage() {
             ))}
           </div>
         </div>
-        <p className="relative z-10 text-teal-300 text-xs">© {currentYear} Ethnic Sparkles · Presented by EEAS Lifestyle</p>
+        <p className="relative z-10 text-teal-300 text-xs">© {currentYear} NS Collection</p>
       </div>
 
       {/* Right Panel */}
       <div className="flex-1 flex items-center justify-center px-6 py-12 bg-white">
         <div className="w-full max-w-md">
           <div className="lg:hidden flex justify-center mb-8">
-            <Link href="/"><Image src="/images/LogoNew.png" alt="Ethnic Sparkles" width={140} height={93} className="object-contain" /></Link>
+            <Link href="/"><ProfessionalLogo size="lg" showText /></Link>
           </div>
 
           <Link href="/auth/login" className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-8 transition-colors">

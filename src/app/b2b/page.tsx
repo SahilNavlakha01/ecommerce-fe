@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { Package, Receipt, BadgeCheck, Headphones, ArrowRight, Check, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'B2B Wholesale | Ethnic Sparkles',
+  title: 'B2B Wholesale | NS Collection',
   description: 'Wholesale jewellery sourcing for retailers and businesses — exclusive pricing, GST invoicing, and dedicated support.',
-  openGraph: { title: 'B2B Wholesale | Ethnic Sparkles', url: '/b2b' },
+  openGraph: { title: 'B2B Wholesale | NS Collection', url: '/b2b' },
 }
 
 const benefits = [
@@ -232,7 +232,7 @@ export default function B2BPage() {
           <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
             <h2 className="text-3xl font-semibold sm:text-4xl">Ready to get started?</h2>
             <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-white/75">
-              Join businesses across India who trust Ethnic Sparkles for reliable wholesale jewellery sourcing.
+              Join businesses across India who trust NS Collection for reliable wholesale jewellery sourcing.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link

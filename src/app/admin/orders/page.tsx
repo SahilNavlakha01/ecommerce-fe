@@ -352,7 +352,7 @@ export default function OrdersPage() {
       col.c-gross{width:9%} col.c-gift{width:8%}
     </style></head><body>
     <div class="header">
-      <div><h2>EEAS LIFESTYLE &mdash; Orders Report</h2><div style="font-size:8.5px;margin-top:3px;opacity:.85">Generated: ${new Date().toLocaleString('en-IN')}</div></div>
+      <div><h2>NS COLLECTION &mdash; Orders Report</h2><div style="font-size:8.5px;margin-top:3px;opacity:.85">Generated: ${new Date().toLocaleString('en-IN')}</div></div>
       <div class="meta">Period: <strong>${startDate}</strong> to <strong>${endDate}</strong><br/>Days: <strong>${groupedDates.length}</strong> &nbsp;|&nbsp; Orders: <strong>${exportOrders.length}</strong></div>
     </div>
     <div class="summary">
@@ -449,7 +449,7 @@ export default function OrdersPage() {
           <td class="num amber">${fmtAmt(totalGifting)}</td>
         </tr></tbody>
       </table>
-      <div class="footer">EEAS LIFESTYLE &bull; support@eeaslifestyle.com &bull; +91 63567 01295 &bull; This is a system-generated report.</div>
+      <div class="footer">NS COLLECTION &bull; support@nscollection.com &bull; +91 63567 01295 &bull; This is a system-generated report.</div>
     </div>
     </body></html>`)
 

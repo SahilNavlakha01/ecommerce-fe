@@ -10,11 +10,11 @@ interface ProfessionalLogoProps {
 }
 
 const sizeMap = {
-  xs: { w: 100, h: 67 },
-  sm: { w: 130, h: 87 },
-  md: { w: 160, h: 107 },
-  lg: { w: 170, h: 104 },
-  xl: { w: 240, h: 161 }
+  xs: { w: 40, h: 40 },
+  sm: { w: 52, h: 52 },
+  md: { w: 68, h: 68 },
+  lg: { w: 84, h: 84 },
+  xl: { w: 120, h: 120 }
 }
 
 export default function ProfessionalLogo({
@@ -26,18 +26,31 @@ export default function ProfessionalLogo({
   const { w, h } = sizeMap[size]
 
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-center gap-2.5 ${className}`}>
       <Image
         src="/images/LogoNew.png"
-        alt="Ethnic Sparkles"
+        alt="NS Collection"
         width={w}
         height={h}
-        className="object-contain flex-shrink-0"
+        className={`object-contain flex-shrink-0 ${
+          variant === 'white' ? 'brightness-0 invert' : ''
+        }`}
         priority
       />
-      <span className="hidden xl:block text-[9px] font-medium tracking-[0.18em] text-gray-400 uppercase leading-tight border-l border-gray-200 pl-2">
-        Presented by<br />EEAS Lifestyle
-      </span>
+      {showText && (
+        <div className="flex flex-col border-l border-gray-200 pl-2.5">
+          <span className={`text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase leading-tight ${
+            variant === 'white' ? 'text-white' : 'text-gray-900 font-heading'
+          }`}>
+            NS Collection
+          </span>
+          <span className={`text-[8px] sm:text-[9px] font-medium tracking-[0.15em] uppercase leading-tight ${
+            variant === 'white' ? 'text-gray-300' : 'text-teal-700'
+          }`}>
+            Luxury Jewellery
+          </span>
+        </div>
+      )}
     </div>
   )
 }

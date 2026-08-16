@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PolicyLayout from '../components/PolicyLayout'
 
 export const metadata: Metadata = {
-  title: 'Shipping Policy | Ethnic Sparkle',
-  description: 'Shipping Policy for Ethnic Sparkle — order processing, delivery timelines, and tracking.',
+  title: 'Shipping Policy | NS Collection',
+  description: 'Shipping Policy for NS Collection — order processing, delivery timelines, and tracking.',
 }
 
 export default function ShippingPolicy() {

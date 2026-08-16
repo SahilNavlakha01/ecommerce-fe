@@ -37,7 +37,7 @@ export default function HomePage() {
 
   const fetchCategories = async () => {
     try {
-      const response = await GetAllCategories()      
+      const response = await GetAllCategories()
       if (response?.data.data) {
         setCategories(response.data.data)
       }
@@ -326,7 +326,7 @@ const TESTIMONIALS = [
   { name: 'Sneha Patel', location: 'Ahmedabad', text: 'The anti-tarnish coating is amazing. My necklace still looks brand new after 3 months of daily wear!', img: 'sneha', stars: 5 },
   { name: 'Meera Nair', location: 'Kochi', text: 'Ordered earrings for my daughter\'s wedding. Everyone complimented how gorgeous they looked. Highly recommend!', img: 'meera', stars: 5 },
   { name: 'Kavya Reddy', location: 'Hyderabad', text: 'Skin-friendly jewelry that doesn\'t cause any irritation. Finally found my go-to jewelry brand!', img: 'kavya', stars: 5 },
-  { name: 'Pooja Singh', location: 'Jaipur', text: 'The ethnic collection is breathtaking. Got so many compliments at the festival. Will definitely order again.', img: 'pooja', stars: 5 },
+  { name: 'Pooja Singh', location: 'Jaipur', text: 'The NS Collection is breathtaking. Got so many compliments at the festival. Will definitely order again.', img: 'pooja', stars: 5 },
   { name: 'Divya Menon', location: 'Chennai', text: 'Affordable yet premium quality. The bracelet set I ordered is absolutely gorgeous and well-crafted.', img: 'divya', stars: 5 },
   { name: 'Sunita Joshi', location: 'Pune', text: 'Packaging was beautiful and the jewelry exceeded my expectations. Perfect gifting option too!', img: 'sunita', stars: 5 },
   { name: 'Rekha Verma', location: 'Lucknow', text: 'The ring collection is stunning. Fits perfectly and the finish is so elegant. Love this brand!', img: 'rekha', stars: 5 },

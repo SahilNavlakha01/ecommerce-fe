@@ -9,6 +9,7 @@ import { successToast, errorToast } from "../../utils/toast";
 import { RegisterB2BUser, SendOtp, VerifyOtp } from "../../Services/PostService";
 import { GetConfig } from "../../Services/GetService";
 import { setAuthCookie } from "../../utils/auth";
+import ProfessionalLogo from "@/components/ui/ProfessionalLogo";
 
 const STEPS = [
   { id: 1, label: "Phone" },
@@ -336,7 +337,7 @@ export default function B2BRegistrationPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-500/30 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-teal-900/40 to-transparent" />
         <Link href="/" className="relative z-10">
-          <img src="/images/LogoNew.png" alt="Ethnic Sparkles" width={160} className="object-contain brightness-0 invert" />
+          <ProfessionalLogo size="lg" variant="white" showText />
         </Link>
         <div className="relative z-10 space-y-6">
           <div className="space-y-3">
@@ -344,14 +345,14 @@ export default function B2BRegistrationPage() {
             <p className="text-teal-200 text-lg">Join our B2B network and get exclusive wholesale pricing.</p>
           </div>
         </div>
-        <p className="relative z-10 text-teal-300 text-xs">© {currentYear} Ethnic Sparkles · Presented by EEAS Lifestyle</p>
+        <p className="relative z-10 text-teal-300 text-xs">© {currentYear} NS Collection</p>
       </div>
 
       <div className="flex-1 flex items-start sm:items-center justify-center px-4 sm:px-6 py-6 sm:py-10 bg-white overflow-y-auto">
         <div className="w-full max-w-md pb-8 sm:pb-0">
           <div className="lg:hidden flex justify-center mb-5">
             <Link href="/">
-              <img src="/images/LogoNew.png" alt="Ethnic Sparkles" width={130} className="object-contain" />
+              <ProfessionalLogo size="lg" showText />
             </Link>
           </div>
 

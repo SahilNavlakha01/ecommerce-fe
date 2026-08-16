@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import PolicyLayout from '../components/PolicyLayout'
 
 export const metadata: Metadata = {
-  title: 'Refund & Return Policy | Ethnic Sparkle',
-  description: 'Refund & Return Policy for Ethnic Sparkle — information on returns, exchanges, and store credit.',
+  title: 'Refund & Return Policy | NS Collection',
+  description: 'Refund & Return Policy for NS Collection — information on returns, exchanges, and store credit.',
 }
 
 export default function RefundPolicy() {
@@ -11,7 +11,7 @@ export default function RefundPolicy() {
     <PolicyLayout
       title="Refund & Return Policy"
       effectiveDate="20/04/2026"
-      intro="At Ethnic Sparkle, we aim to deliver quality products and a delightful experience. If you are not fully satisfied, please review our policy below."
+      intro="At NS Collection, we aim to deliver quality products and a delightful experience. If you are not fully satisfied, please review our policy below."
       sections={[
         {
           title: 'Return Eligibility',

@@ -1,12 +1,12 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nscollection.com'
 export const SITE_NAME = 'NS Collection'
 export const SITE_DESCRIPTION =
-  'Discover exquisite handcrafted jewelry at NS Collection. Premium quality rings, necklaces, earrings with BIS hallmark and lifetime warranty.'
+  'Discover trending and everyday fashion jewellery at NS Collection. Explore rings, necklaces, earrings, and bracelets crafted with premium polish and stylish designs.'
 
 export const defaultMetadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} - Premium Jewelry Collection`,
+    default: `${SITE_NAME} - Trending Fashion Jewellery`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,

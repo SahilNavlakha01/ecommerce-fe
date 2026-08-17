@@ -203,8 +203,8 @@ export default function InlineReviewSection({
               <div key={review.id} className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-sm sm:text-base font-semibold text-teal-700">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-rose-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-sm sm:text-base font-bold text-rose-900">
                         {review.userName ? review.userName.charAt(0).toUpperCase() : 'U'}
                       </span>
                     </div>

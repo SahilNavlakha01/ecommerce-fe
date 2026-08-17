@@ -1162,10 +1162,10 @@ function ProductsPageContent() {
 export default function ProductsPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-stone-50 via-white to-vanilla-50">
+      <div className="min-h-screen flex items-center justify-center bg-[#faf9f6]">
         <div className="flex flex-col items-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600"></div>
-          <p className="mt-4 text-gray-600">Loading products...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-2 border-rose-100 border-t-rose-900"></div>
+          <p className="mt-4 text-xs font-semibold tracking-wider uppercase text-stone-600">Loading products...</p>
         </div>
       </div>
     }>

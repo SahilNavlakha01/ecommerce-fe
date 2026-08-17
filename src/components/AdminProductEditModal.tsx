@@ -337,7 +337,7 @@ export default function AdminProductEditModal({ isOpen, productId, onClose, onSu
         <div className="overflow-y-auto flex-1 p-6">
           {fetchLoading ? (
             <div className="min-h-96 flex flex-col items-center justify-center space-y-3">
-              <div className="animate-spin rounded-full h-8 w-8 border-2 border-teal-200 border-t-teal-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-2 border-rose-100 border-t-rose-800"></div>
               <p className="text-sm text-gray-500 font-semibold">Loading product details...</p>
             </div>
           ) : (

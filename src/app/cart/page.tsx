@@ -351,28 +351,28 @@ export default function CartPage() {
   if (cartItems.length === 0) {
     return (
       <EcommerceLayout>
-        <div className="min-h-screen bg-gradient-to-br from-stone-50 via-white to-vanilla-50">
+        <div className="min-h-screen bg-[#faf9f6]">
           <div className="py-8 lg:py-16">
             <div className="max-w-4xl mx-auto px-4 text-center">
-              <div className="bg-white rounded-2xl lg:rounded-3xl shadow-xl p-6 lg:p-12 border border-gray-100 overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-32 h-32 lg:w-64 lg:h-64 bg-teal-50 rounded-full -translate-y-16 translate-x-16 lg:-translate-y-32 lg:translate-x-32 opacity-70"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-32 lg:w-64 lg:h-64 bg-teal-50 rounded-full translate-y-16 -translate-x-16 lg:translate-y-32 lg:-translate-x-32 opacity-70"></div>
+              <div className="bg-white rounded-2xl lg:rounded-3xl shadow-xl p-6 lg:p-12 border border-stone-200 overflow-hidden relative">
+                <div className="absolute top-0 right-0 w-32 h-32 lg:w-64 lg:h-64 bg-rose-50 rounded-full -translate-y-16 translate-x-16 lg:-translate-y-32 lg:translate-x-32 opacity-70"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 lg:w-64 lg:h-64 bg-amber-50 rounded-full translate-y-16 -translate-x-16 lg:translate-y-32 lg:-translate-x-32 opacity-70"></div>
 
                 <div className="relative z-10">
-                  <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-teal-50 to-teal-100 rounded-full flex items-center justify-center mx-auto mb-6 lg:mb-8 shadow-lg">
-                    <svg className="w-12 h-12 lg:w-16 lg:h-16 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-rose-50 to-rose-100 rounded-full flex items-center justify-center mx-auto mb-6 lg:mb-8 shadow-md">
+                    <svg className="w-12 h-12 lg:w-16 lg:h-16 text-rose-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                   </div>
-                  <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3 lg:mb-4 font-sans">Your Cart is Empty</h2>
-                  <p className="text-base lg:text-lg text-gray-600 mb-6 lg:mb-8 max-w-md mx-auto">
-                    Discover our exquisite collection of handcrafted jewelry pieces
+                  <h2 className="text-2xl lg:text-3xl font-serif font-bold text-stone-900 mb-3 lg:mb-4">Your Cart is Empty</h2>
+                  <p className="text-sm lg:text-base text-stone-500 mb-6 lg:mb-8 max-w-md mx-auto">
+                    Discover our collection of handcrafted fashion jewellery & accessories
                   </p>
-                  <Link href="/shop" className="inline-flex items-center bg-gradient-to-r from-teal-600 to-teal-700 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-full font-semibold hover:from-teal-700 hover:to-teal-800 transition-all duration-200 shadow-md hover:shadow-lg">
+                  <Link href="/shop" className="inline-flex items-center bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white px-6 py-3 lg:px-8 lg:py-3.5 rounded-full font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all duration-200 shadow-md hover:shadow-lg">
                     <svg className="w-4 h-4 lg:w-5 lg:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
-                    <span className="text-sm lg:text-base">Explore Collection</span>
+                    <span>Explore Collection</span>
                   </Link>
                 </div>
               </div>
@@ -488,13 +488,13 @@ export default function CartPage() {
                             {/* Row 2: meta tags */}
                             <div className="flex flex-wrap gap-1.5 ml-6">
                               {((item as any).selectedSize || item.size) && (
-                                <span className="text-xs bg-teal-50 text-teal-700 border border-teal-100 px-2 py-0.5 rounded-full font-medium">Size: {(item as any).selectedSize || item.size}</span>
+                                <span className="text-xs bg-rose-50 text-rose-900 border border-rose-200 px-2 py-0.5 rounded-full font-medium">Size: {(item as any).selectedSize || item.size}</span>
                               )}
                               {item.weight && (
-                                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">{item.weight}g</span>
+                                <span className="text-xs bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full">{item.weight}g</span>
                               )}
                               {Number(item.rating) > 0 && (
-                                <span className="text-xs text-gray-500 flex items-center gap-0.5">
+                                <span className="text-xs text-stone-500 flex items-center gap-0.5">
                                   <svg className="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                   </svg>
@@ -502,7 +502,7 @@ export default function CartPage() {
                                 </span>
                               )}
                               {(item.isB2b || item.isBoth) && (item.minQuantity || 1) > 1 && (
-                                <span className="text-xs bg-teal-50 text-teal-700 border border-teal-100 px-2 py-0.5 rounded-full font-medium">
+                                <span className="text-xs bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full font-medium">
                                   {item.minQuantity} units/pkg
                                 </span>
                               )}
@@ -670,21 +670,21 @@ export default function CartPage() {
 
                 {/* B2B Minimum Order Warning */}
                 {user?.userRole === 2 && subtotal < B2B_MIN_ORDER && subtotal > 0 && (
-                  <div className="mb-4 rounded-xl border border-teal-200 bg-gradient-to-r from-teal-50 to-cyan-50 px-4 py-3 text-sm text-teal-950 shadow-sm">
+                  <div className="mb-4 rounded-xl border border-amber-200 bg-amber-50/70 px-4 py-3 text-sm text-stone-900 shadow-sm">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <p className="font-semibold">You&apos;re almost there</p>
-                        <p className="text-xs text-teal-700 mt-0.5">
+                        <p className="font-semibold text-amber-950">You&apos;re almost there</p>
+                        <p className="text-xs text-amber-800 mt-0.5">
                           Spend ₹{(B2B_MIN_ORDER - subtotal).toLocaleString('en-IN')} more to reach the ₹3,000 B2B minimum.
                         </p>
                       </div>
-                      <span className="shrink-0 rounded-full bg-white/80 px-2.5 py-1 text-[11px] font-bold text-teal-800 border border-teal-200">
+                      <span className="shrink-0 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-amber-900 border border-amber-200">
                         B2B
                       </span>
                     </div>
-                    <div className="mt-3 h-2 rounded-full bg-teal-100 overflow-hidden">
+                    <div className="mt-3 h-2 rounded-full bg-amber-100 overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-teal-500 to-cyan-500"
+                        className="h-full rounded-full bg-gradient-to-r from-amber-400 to-rose-700"
                         style={{ width: `${Math.min((subtotal / B2B_MIN_ORDER) * 100, 100)}%` }}
                       />
                     </div>
@@ -867,94 +867,212 @@ function GuestCheckoutModal({ onClose, onSuccess }: { onClose: () => void; onSuc
   }
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm px-0 sm:px-4">
-      <div className="w-full sm:max-w-md bg-white sm:rounded-3xl rounded-t-3xl shadow-2xl overflow-hidden">
-        <div className="h-1.5 w-full bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500" />
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-stone-950/70 backdrop-blur-sm p-4">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden border border-stone-200/90 relative animate-fade-up">
+        {/* Top Luxury Gradient Stripe */}
+        <div className="h-1.5 w-full bg-gradient-to-r from-amber-400 via-rose-700 to-rose-950" />
 
-        {/* Progress steps */}
-        <div className="flex items-center justify-center gap-2 pt-5 px-6">
-          {(['phone', 'otp'] as const).map((s, i) => (
-            <div key={s} className="flex items-center gap-2">
-              <div className={cn('w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all',
-                step === s ? 'bg-teal-600 text-white scale-110' :
-                (['phone', 'otp'].indexOf(step) > i) ? 'bg-teal-100 text-teal-600' : 'bg-gray-100 text-gray-400'
-              )}>{i + 1}</div>
-              {i < 1 && <div className={cn('w-8 h-0.5 rounded', ['phone', 'otp'].indexOf(step) > i ? 'bg-teal-400' : 'bg-gray-200')} />}
-            </div>
-          ))}
-        </div>
+        {/* Modal Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-stone-100 text-stone-400 hover:text-stone-700 transition-colors cursor-pointer z-10"
+          aria-label="Close"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
 
-        <div className="p-6">
-          <div className="flex items-start justify-between mb-5">
-            <div>
-              <h2 className="text-lg font-bold text-gray-900">
-                {step === 'phone' ? 'Verify your number' : step === 'otp' ? 'Enter OTP' : 'Almost done!'}
-              </h2>
-              <p className="text-sm text-gray-500 mt-0.5">
-                {step === 'phone' ? 'Quick verification to place your order' : `Code sent to +91 ${phone}`}
-              </p>
+        <div className="p-6 sm:p-7">
+          
+          {/* Header with Brand Monogram */}
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 mb-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-700"></span>
+              <span className="text-[10px] font-bold text-rose-900 uppercase tracking-[0.18em]">
+                {step === 'choose' ? 'Final Step' : step === 'otp' ? 'Security Verification' : 'Instant Checkout Access'}
+              </span>
             </div>
-            <button onClick={onClose} className="p-1.5 rounded-full hover:bg-gray-100 text-gray-400">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+
+            <h2 className="text-2xl font-serif font-bold text-stone-900 tracking-tight">
+              {step === 'phone' ? 'Login or Sign Up' : step === 'otp' ? 'Enter 6-Digit OTP' : 'Select Account Type'}
+            </h2>
+            
+            <p className="text-xs text-stone-500 mt-1.5 leading-relaxed">
+              {step === 'phone'
+                ? 'Enter your mobile number to securely place your order'
+                : step === 'otp'
+                  ? `Enter the code sent to +91 ${phone}`
+                  : 'Choose how you want to complete your order'}
+            </p>
           </div>
 
+          {/* Step 1: Mobile Phone */}
           {step === 'phone' && (
             <form onSubmit={(e) => { e.preventDefault(); sendOtp() }} className="space-y-4">
-              <div className="flex">
-                <span className="inline-flex items-center px-4 rounded-l-xl border border-r-0 border-gray-300 bg-gray-50 text-sm font-medium text-gray-600">+91</span>
-                <input type="tel" required maxLength={10} value={phone} onChange={e => setPhone(e.target.value)}
-                  placeholder="10-digit mobile number" autoFocus
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-r-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" />
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
+                  Mobile Number
+                </label>
+                <div className="flex rounded-xl overflow-hidden border border-stone-200 bg-stone-50/70 focus-within:border-rose-700 focus-within:bg-white focus-within:ring-4 focus-within:ring-rose-100 transition-all">
+                  <span className="inline-flex items-center px-3.5 bg-stone-100/70 text-xs font-bold text-stone-700 border-r border-stone-200">
+                    🇮🇳 +91
+                  </span>
+                  <input
+                    type="tel"
+                    required
+                    maxLength={10}
+                    value={phone}
+                    onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                    placeholder="Enter 10-digit number"
+                    autoFocus
+                    className="min-w-0 flex-1 px-4 py-3.5 text-sm font-semibold text-stone-900 outline-none placeholder:text-stone-400 placeholder:font-normal bg-transparent"
+                  />
+                </div>
               </div>
-              {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
-              <button type="submit" disabled={loading || phone.length < 10}
-                className="luxury-btn disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none">
-                {loading ? 'Sending...' : 'Send OTP'}
+
+              {error && (
+                <div className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-medium text-rose-800 flex items-center gap-2">
+                  <span>⚠️</span>
+                  <span>{error}</span>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading || phone.length < 10}
+                className="w-full h-12 rounded-xl text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white shadow-md hover:shadow-lg hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? (
+                  <span className="inline-flex items-center gap-2">
+                    <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                    </svg>
+                    Sending Code...
+                  </span>
+                ) : (
+                  'Get OTP & Continue'
+                )}
               </button>
             </form>
           )}
 
+          {/* Step 2: OTP Verification */}
           {step === 'otp' && (
             <form onSubmit={verifyOtp} className="space-y-4">
-              <div onPaste={handlePaste} className="grid grid-cols-6 gap-2">
-                {otpDigits.map((digit, i) => (
-                  <input key={i} ref={el => { otpRefs.current[i] = el }} type="tel" inputMode="numeric"
-                    maxLength={1} value={digit === ' ' ? '' : digit}
-                    onChange={e => handleDigitChange(i, e.target.value)}
-                    onKeyDown={e => handleKeyDown(i, e)}
-                    autoFocus={i === 0}
-                    className="h-12 rounded-xl border-2 border-gray-300 text-center text-lg font-bold focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition" />
-                ))}
+              <div>
+                <div className="mb-2 flex items-center justify-between">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-stone-700">Verification Code</label>
+                  <span className="text-[11px] font-medium text-rose-800">Auto-fill ready</span>
+                </div>
+                <div onPaste={handlePaste} className="grid grid-cols-6 gap-2">
+                  {otpDigits.map((digit, i) => (
+                    <input
+                      key={i}
+                      ref={el => { otpRefs.current[i] = el }}
+                      type="tel"
+                      inputMode="numeric"
+                      maxLength={1}
+                      value={digit === ' ' ? '' : digit}
+                      onChange={e => handleDigitChange(i, e.target.value)}
+                      onKeyDown={e => handleKeyDown(i, e)}
+                      autoFocus={i === 0}
+                      className="h-12 sm:h-13 rounded-xl border border-stone-200 text-center text-lg font-bold text-stone-900 focus:border-rose-700 focus:bg-white focus:ring-4 focus:ring-rose-100 outline-none transition bg-stone-50/70"
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="flex justify-between text-sm">
-                <button type="button" onClick={() => { setStep('phone'); setOtp('') }} className="text-gray-500 hover:text-gray-700 font-medium">Change number</button>
-                {timer > 0
-                  ? <span className="text-gray-400">Resend in <span className="text-teal-600 font-semibold">{timer}s</span></span>
-                  : <button type="button" onClick={sendOtp} className="text-teal-600 font-semibold hover:underline">Resend OTP</button>}
-              </div>
-              {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
-              <button type="submit" disabled={loading || otp.length < 6}
-                className="luxury-btn disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none">
-                {loading ? 'Verifying...' : 'Verify & Continue'}
+
+              {error && (
+                <div className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-medium text-rose-800 flex items-center gap-2">
+                  <span>⚠️</span>
+                  <span>{error}</span>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading || otp.length < 6}
+                className="w-full h-12 rounded-xl text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white shadow-md hover:shadow-lg hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? (
+                  <span className="inline-flex items-center gap-2">
+                    <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                    </svg>
+                    Verifying...
+                  </span>
+                ) : (
+                  'Verify & Proceed'
+                )}
               </button>
+
+              <div className="flex items-center justify-between text-xs pt-1">
+                <button
+                  type="button"
+                  onClick={() => { setStep('phone'); setOtp('') }}
+                  className="text-stone-500 hover:text-stone-900 font-semibold underline underline-offset-4 cursor-pointer"
+                >
+                  ← Change number
+                </button>
+                {timer > 0 ? (
+                  <span className="text-stone-400">
+                    Resend in <strong className="text-rose-900 font-bold">{timer}s</strong>
+                  </span>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={sendOtp}
+                    className="text-rose-900 font-bold hover:underline underline-offset-4 cursor-pointer"
+                  >
+                    Resend Code
+                  </button>
+                )}
+              </div>
             </form>
           )}
 
+          {/* Step 3: Choose Account Type */}
           {step === 'choose' && (
             <div className="space-y-4">
+              <div className="rounded-xl border border-rose-100 bg-rose-50/70 p-3 text-xs text-rose-900 flex items-center justify-between">
+                <span>Verified: <strong className="font-bold">+91 {phone}</strong></span>
+                <button
+                  type="button"
+                  onClick={() => { setStep('phone'); setError(''); setOtp('') }}
+                  className="text-rose-700 underline hover:text-rose-900 font-bold cursor-pointer"
+                >
+                  Edit
+                </button>
+              </div>
+              
               <AccountTypeSelector 
                 onSelect={handleChooseType}
                 isLoading={loading}
-                className="px-2"
               />
-              {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
+
+              {error && (
+                <div className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-medium text-rose-800">
+                  {error}
+                </div>
+              )}
             </div>
           )}
 
-          <p className="text-center text-xs text-gray-400 mt-4">Your cart items are safe and will be preserved</p>
+          {/* Trust Guarantee Footer */}
+          <div className="mt-5 pt-4 border-t border-stone-100 flex items-center justify-center gap-4 text-[11px] text-stone-400 font-medium">
+            <span className="flex items-center gap-1">
+              <svg className="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              Cart Items Preserved
+            </span>
+            <span>•</span>
+            <span>256-Bit Encrypted</span>
+          </div>
+
         </div>
       </div>
     </div>

@@ -121,7 +121,7 @@ const CartSummary = ({ isOpen, onClose }) => {
               <Link
                 href="/checkout"
                 onClick={onClose}
-                className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-teal-700 transition-colors block text-center"
+                className="w-full bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white py-2.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all block text-center shadow-md"
               >
                 Proceed to Checkout
               </Link>
@@ -129,7 +129,7 @@ const CartSummary = ({ isOpen, onClose }) => {
               <Link
                 href="/checkout"
                 onClick={onClose}
-                className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-teal-700 transition-colors block text-center"
+                className="w-full bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white py-2.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all block text-center shadow-md"
               >
                 Checkout
               </Link>

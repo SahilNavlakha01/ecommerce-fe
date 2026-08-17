@@ -217,7 +217,7 @@ export default function TopProductsPage() {
           <div className="flex-1 overflow-y-auto pr-2 space-y-3 scrollbar-thin">
             {loading ? (
               <div className="flex justify-center items-center h-40">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-teal-600"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-2 border-rose-100 border-t-rose-800"></div>
               </div>
             ) : topProducts.length === 0 ? (
               <div className="text-center py-10 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200">
@@ -291,7 +291,7 @@ export default function TopProductsPage() {
           <div className="flex-1 overflow-y-auto pr-2 space-y-2 scrollbar-thin">
             {loading ? (
               <div className="flex justify-center items-center h-40">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-teal-600"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-2 border-rose-100 border-t-rose-800"></div>
               </div>
             ) : filteredAvailableProducts.length === 0 ? (
               <div className="text-center py-8 text-gray-500">
@@ -323,7 +323,7 @@ export default function TopProductsPage() {
             {/* Loading indicator for pagination */}
             {loadingMore && (
               <div className="flex justify-center items-center py-4">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-teal-600"></div>
+                <div className="animate-spin rounded-full h-6 w-6 border-2 border-rose-100 border-t-rose-800"></div>
               </div>
             )}
             

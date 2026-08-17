@@ -201,169 +201,227 @@ export default function OtpLoginPage() {
   }, [otp, step, isLoading])
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <main className="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-xl items-center justify-center">
-          <div className="w-full">
-            <div className="mb-6 flex justify-center">
-              <Link href="/" className="transition-transform hover:scale-105">
-                <ProfessionalLogo size="xl" showText />
-              </Link>
+    <div className="min-h-screen bg-[#faf9f6] relative flex flex-col justify-center py-10 px-4 sm:px-6 lg:px-8 overflow-hidden font-sans">
+      {/* Subtle Ambient Glows */}
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-rose-200/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-amber-100/60 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      <div className="w-full max-w-md mx-auto">
+        
+        {/* Brand Logo Header */}
+        <div className="mb-8 flex flex-col items-center text-center">
+          <Link href="/" className="transition-transform hover:scale-105 inline-block">
+            <ProfessionalLogo size="xl" showText />
+          </Link>
+          <p className="text-stone-500 text-xs mt-3 tracking-widest uppercase font-medium">
+            Fashion Jewellery & Accessories
+          </p>
+        </div>
+
+        {/* Main Luxury Auth Card */}
+        <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-stone-200/80 shadow-[0_20px_50px_rgba(159,18,57,0.06)] overflow-hidden">
+          
+          {/* Top Gradient Accent Strip */}
+          <div className="h-1.5 w-full bg-gradient-to-r from-amber-400 via-rose-700 to-rose-950" />
+
+          <div className="p-6 sm:p-8">
+            <div className="mb-6 text-center sm:text-left">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/60 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-rose-700"></span>
+                <span className="text-[10px] font-bold text-rose-900 uppercase tracking-[0.18em]">
+                  {step === 'choose' ? 'Final Step' : step === 'otp' ? 'Security Verification' : 'Quick & Secure Access'}
+                </span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900 tracking-tight leading-tight">
+                {step === 'choose'
+                  ? 'Select Account Type'
+                  : step === 'otp'
+                    ? 'Enter 6-Digit OTP'
+                    : 'Login or Sign Up'}
+              </h1>
+              <p className="mt-2 text-xs sm:text-sm text-stone-500 leading-relaxed">
+                {step === 'choose'
+                  ? 'Choose Retail for personal shopping or Business for wholesale pricing.'
+                  : step === 'otp'
+                    ? `Enter the one-time code sent to +91 ${phone}`
+                    : 'Enter your 10-digit mobile number to receive an instant verification code.'}
+              </p>
             </div>
 
-            <div className="overflow-hidden rounded-[24px] border border-gray-200 bg-white shadow-[0_12px_40px_rgba(15,23,42,0.08)]">
-              <div className="h-1 w-full bg-teal-500" />
-
-              <div className="p-5 sm:p-8">
-                <div className="mb-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-teal-700">
-                    {step === 'choose' ? 'Almost there' : step === 'otp' ? 'Verify mobile' : 'Sign in / Register'}
-                  </p>
-                  <h2 className="mt-2 text-2xl font-semibold tracking-tight text-gray-900 sm:text-[2rem]">
-                    {step === 'choose'
-                      ? 'Choose your account type'
-                      : step === 'otp'
-                        ? 'Enter the OTP sent to your phone'
-                        : 'Continue with your mobile number'}
-                  </h2>
-                  <p className="mt-2 max-w-md text-sm leading-6 text-gray-500 sm:text-base">
-                    {step === 'choose'
-                      ? 'Select Retail for personal shopping or Business for wholesale access.'
-                      : step === 'otp'
-                        ? 'We sent a 6-digit code to this number. Enter it to continue.'
-                        : 'Enter your mobile number to continue.'}
-                  </p>
+            {step === 'phone' && (
+              <form onSubmit={handlePhoneSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1.5">
+                    Mobile Number
+                  </label>
+                  <div className="flex overflow-hidden rounded-xl border border-stone-200 bg-stone-50/70 transition-all focus-within:border-rose-700 focus-within:bg-white focus-within:ring-4 focus-within:ring-rose-100">
+                    <span className="inline-flex items-center border-r border-stone-200 px-4 text-xs font-bold text-stone-700 bg-stone-100/50">
+                      🇮🇳 +91
+                    </span>
+                    <input
+                      type="tel"
+                      required
+                      value={phone}
+                      onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                      maxLength={10}
+                      inputMode="numeric"
+                      placeholder="Enter 10-digit number"
+                      autoFocus
+                      className="min-w-0 flex-1 bg-transparent px-4 py-3.5 text-sm font-semibold text-stone-900 outline-none placeholder:text-stone-400 placeholder:font-normal"
+                    />
+                  </div>
                 </div>
 
-                {step === 'phone' && (
-                  <form onSubmit={handlePhoneSubmit} className="space-y-5">
-                    <div>
-                      <label className="mb-2 block text-sm font-medium text-gray-700">Mobile number</label>
-                      <div className="flex overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 transition focus-within:border-teal-500 focus-within:bg-white focus-within:ring-4 focus-within:ring-teal-100">
-                        <span className="inline-flex items-center border-r border-gray-200 px-4 text-sm font-semibold text-gray-600 sm:px-5">
-                          +91
-                        </span>
-                        <input
-                          type="tel"
-                          required
-                          value={phone}
-                          onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                          maxLength={10}
-                          inputMode="numeric"
-                          placeholder="10-digit mobile number"
-                          autoFocus
-                          className="min-w-0 flex-1 bg-transparent px-4 py-4 text-sm text-gray-900 outline-none placeholder:text-gray-400"
-                        />
-                      </div>
-                    </div>
-
-                    {error && (
-                      <p className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-700">
-                        {error}
-                      </p>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={isLoading || phone.length < 10}
-                      className="inline-flex h-12 w-full items-center justify-center rounded-2xl bg-teal-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {isLoading ? 'Checking...' : 'Continue'}
-                    </button>
-                  </form>
-                )}
-
-                {step === 'otp' && (
-                  <form onSubmit={handleOtpSubmit} className="space-y-5">
-                    <div>
-                      <div className="mb-2 flex items-center justify-between">
-                        <label className="block text-sm font-medium text-gray-700">OTP code</label>
-                        <span className="text-xs font-medium text-gray-400">Auto-fill supported</span>
-                      </div>
-                      <div
-                        className="grid grid-cols-6 gap-2 sm:gap-3"
-                        onPaste={handleOtpPaste}
-                      >
-                        {otpDigits.map((digit, index) => (
-                          <input
-                            key={index}
-                            ref={(el) => { otpRefs.current[index] = el }}
-                            type="tel"
-                            inputMode="numeric"
-                            autoComplete={index === 0 ? 'one-time-code' : 'off'}
-                            maxLength={1}
-                            value={digit === ' ' ? '' : digit}
-                            onChange={(e) => handleOtpDigitChange(index, e.target.value)}
-                            onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                            className="h-12 rounded-2xl border border-gray-200 bg-gray-50 text-center text-lg font-bold tracking-[0.1em] text-gray-900 outline-none transition focus:border-teal-500 focus:bg-white focus:ring-4 focus:ring-teal-100 sm:h-14"
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {error && (
-                      <p className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-700">
-                        {error}
-                      </p>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={isLoading || otp.length < 6}
-                      className="inline-flex h-12 w-full items-center justify-center rounded-2xl bg-teal-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {isLoading ? 'Verifying...' : 'Verify OTP'}
-                    </button>
-
-                    <div className="flex items-center justify-between gap-3 text-sm">
-                      <button
-                        type="button"
-                        onClick={() => { setStep('phone'); setOtp(''); setError(''); lastSubmittedOtpRef.current = '' }}
-                        className="text-gray-600 underline-offset-4 hover:text-gray-900 hover:underline"
-                        disabled={isLoading}
-                      >
-                        Change number
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => { setError(''); requestOtp() }}
-                        className="text-teal-700 underline-offset-4 hover:text-teal-900 hover:underline"
-                        disabled={isLoading}
-                      >
-                        Resend OTP
-                      </button>
-                    </div>
-                  </form>
-                )}
-
-                {step === 'choose' && (
-                  <div className="space-y-5">
-                    <div className="rounded-xl border border-teal-100 bg-teal-50 px-4 py-3 text-sm text-teal-700">
-                      Mobile: <span className="font-semibold">+91 {phone}</span>
-                      <button
-                        type="button"
-                        onClick={() => { setStep('phone'); setError(''); setOtp(''); lastSubmittedOtpRef.current = '' }}
-                        className="ml-3 text-xs text-teal-600 underline hover:text-teal-800"
-                      >
-                        Change
-                      </button>
-                    </div>
-                    <AccountTypeSelector
-                      onSelect={handleChooseType}
-                      isLoading={isLoading}
-                    />
-                    {error && <p className="rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
+                {error && (
+                  <div className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-medium text-rose-800 flex items-center gap-2">
+                    <span>⚠️</span>
+                    <span>{error}</span>
                   </div>
                 )}
 
-                <div className="mt-8 flex flex-col items-center gap-3 border-t border-gray-100 pt-6">
-                  <p className="text-xs text-gray-400">© {currentYear} NS Collection</p>
+                <button
+                  type="submit"
+                  disabled={isLoading || phone.length < 10}
+                  className="w-full h-12 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.99] transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  {isLoading ? (
+                    <span className="inline-flex items-center gap-2">
+                      <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                      </svg>
+                      Sending Code...
+                    </span>
+                  ) : (
+                    'Get OTP Code'
+                  )}
+                </button>
+              </form>
+            )}
+
+            {step === 'otp' && (
+              <form onSubmit={handleOtpSubmit} className="space-y-5">
+                <div>
+                  <div className="mb-2 flex items-center justify-between">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-stone-700">Verification Code</label>
+                    <span className="text-[11px] font-medium text-rose-800">Auto-fill ready</span>
+                  </div>
+                  <div
+                    className="grid grid-cols-6 gap-2"
+                    onPaste={handleOtpPaste}
+                  >
+                    {otpDigits.map((digit, index) => (
+                      <input
+                        key={index}
+                        ref={(el) => { otpRefs.current[index] = el }}
+                        type="tel"
+                        inputMode="numeric"
+                        autoComplete={index === 0 ? 'one-time-code' : 'off'}
+                        maxLength={1}
+                        value={digit === ' ' ? '' : digit}
+                        onChange={(e) => handleOtpDigitChange(index, e.target.value)}
+                        onKeyDown={(e) => handleOtpKeyDown(index, e)}
+                        className="h-12 sm:h-14 rounded-xl border border-stone-200 bg-stone-50/70 text-center text-lg sm:text-xl font-bold tracking-wider text-stone-900 outline-none transition-all focus:border-rose-700 focus:bg-white focus:ring-4 focus:ring-rose-100 shadow-xs"
+                      />
+                    ))}
+                  </div>
                 </div>
+
+                {error && (
+                  <div className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-medium text-rose-800 flex items-center gap-2">
+                    <span>⚠️</span>
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isLoading || otp.length < 6}
+                  className="w-full h-12 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white text-xs font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.99] transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  {isLoading ? (
+                    <span className="inline-flex items-center gap-2">
+                      <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                      </svg>
+                      Verifying...
+                    </span>
+                  ) : (
+                    'Verify & Proceed'
+                  )}
+                </button>
+
+                <div className="flex items-center justify-between text-xs pt-1">
+                  <button
+                    type="button"
+                    onClick={() => { setStep('phone'); setOtp(''); setError(''); lastSubmittedOtpRef.current = '' }}
+                    className="text-stone-500 hover:text-stone-900 font-semibold underline underline-offset-4"
+                    disabled={isLoading}
+                  >
+                    ← Change Number
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setError(''); requestOtp() }}
+                    className="text-rose-900 hover:text-rose-950 font-bold underline underline-offset-4"
+                    disabled={isLoading}
+                  >
+                    Resend Code
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {step === 'choose' && (
+              <div className="space-y-4">
+                <div className="rounded-xl border border-rose-100 bg-rose-50/70 p-3 text-xs text-rose-900 flex items-center justify-between">
+                  <span>Logged in as: <strong className="font-bold">+91 {phone}</strong></span>
+                  <button
+                    type="button"
+                    onClick={() => { setStep('phone'); setError(''); setOtp(''); lastSubmittedOtpRef.current = '' }}
+                    className="text-rose-700 underline hover:text-rose-900 font-bold"
+                  >
+                    Edit
+                  </button>
+                </div>
+                <AccountTypeSelector
+                  onSelect={handleChooseType}
+                  isLoading={isLoading}
+                />
+                {error && (
+                  <div className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-medium text-rose-800">
+                    {error}
+                  </div>
+                )}
               </div>
+            )}
+
+            {/* Bottom Trust & Security Strip */}
+            <div className="mt-6 pt-5 border-t border-stone-100 text-center space-y-2">
+              <div className="flex items-center justify-center gap-4 text-[11px] text-stone-400 font-medium">
+                <span className="flex items-center gap-1">
+                  <svg className="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  256-Bit Encrypted
+                </span>
+                <span>•</span>
+                <span>Fast 1-Click Login</span>
+              </div>
+              <p className="text-[10px] text-stone-400">
+                By continuing, you agree to our <Link href="/terms" className="text-stone-600 underline">Terms</Link> & <Link href="/privacy" className="text-stone-600 underline">Privacy Policy</Link>
+              </p>
             </div>
+
           </div>
         </div>
-      </main>
+
+        <p className="text-center text-xs text-stone-400 mt-6">
+          © {currentYear} NS Collection. All rights reserved.
+        </p>
+
+      </div>
     </div>
   )
 }

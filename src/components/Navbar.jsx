@@ -181,18 +181,18 @@ export default function Navbar() {
             }}
           />
 
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl z-50 overflow-hidden">
-            <div className="bg-gradient-to-r from-teal-600 via-teal-600 to-teal-700 px-6 py-5 border-b border-teal-700">
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl z-50 overflow-hidden border border-stone-200">
+            <div className="bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 px-6 py-5 border-b border-rose-950">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg border border-white/10">
+                    <svg className="w-6 h-6 text-amber-200" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-xl">Delivery Location</h3>
-                    <p className="text-sm text-teal-100">Check delivery availability</p>
+                    <h3 className="font-serif font-bold text-white text-xl">Delivery Location</h3>
+                    <p className="text-xs text-rose-200">Check delivery & COD availability</p>
                   </div>
                 </div>
                 <button
@@ -200,7 +200,7 @@ export default function Navbar() {
                     setShowPincodeModal(false);
                     setDeliveryInfo(null);
                   }}
-                  className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
                 >
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -224,14 +224,14 @@ export default function Navbar() {
                       placeholder="Enter 6-digit PIN code"
                       value={pincode}
                       onChange={(e) => setPincode(e.target.value.replace(/\D/g, ''))}
-                      className="w-full pl-12 pr-4 py-3.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-4 focus:ring-teal-50 text-sm font-semibold transition-all duration-200 placeholder:text-gray-400 placeholder:font-normal"
+                      className="w-full pl-12 pr-4 py-3.5 border-2 border-stone-200 rounded-xl focus:outline-none focus:border-rose-700 focus:ring-4 focus:ring-rose-50 text-sm font-semibold transition-all duration-200 placeholder:text-stone-400 placeholder:font-normal"
                       maxLength={6}
                     />
                   </div>
                   <button
                     onClick={checkDelivery}
                     disabled={pincode.length !== 6 || loadingDelivery}
-                    className="px-6 py-3.5 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-xl hover:from-teal-700 hover:to-teal-800 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-200 font-bold text-sm shadow-lg hover:shadow-xl flex items-center gap-2 whitespace-nowrap"
+                    className="px-6 py-3.5 bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white rounded-xl hover:brightness-110 disabled:from-stone-300 disabled:to-stone-400 disabled:cursor-not-allowed transition-all duration-200 font-bold text-sm shadow-md hover:shadow-lg flex items-center gap-2 whitespace-nowrap"
                   >
                     {loadingDelivery ? (
                       <>
@@ -243,7 +243,7 @@ export default function Navbar() {
                     )}
                   </button>
                 </div>
-                <p className="text-xs text-gray-500 flex items-center gap-1">
+                <p className="text-xs text-stone-500 flex items-center gap-1">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                   </svg>
@@ -252,26 +252,26 @@ export default function Navbar() {
               </div>
 
               {deliveryInfo && (
-                <div className="mt-4 p-5 bg-gradient-to-br from-gray-50 to-white rounded-xl border-2 border-gray-200 shadow-sm">
+                <div className="mt-4 p-5 bg-stone-50 rounded-xl border border-stone-200 shadow-sm">
                   {deliveryInfo.available ? (
                     <div className="space-y-3">
                       <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
                           <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
                         <div className="flex-1">
-                          <p className="text-green-700 font-bold text-base mb-1">
+                          <p className="text-emerald-800 font-bold text-base mb-1">
                             Delivery Available!
                           </p>
-                          <p className="text-gray-700 font-semibold text-sm">
-                            Expected: <span className="text-teal-600">{deliveryInfo.estimatedDate}</span> ({deliveryInfo.deliveryDays} days)
+                          <p className="text-stone-700 font-semibold text-sm">
+                            Expected: <span className="text-rose-800">{deliveryInfo.estimatedDate}</span> ({deliveryInfo.deliveryDays} days)
                           </p>
                           <div className="mt-2 flex items-center gap-2">
                             <span className={`text-xs font-semibold px-3 py-1 rounded-full ${deliveryInfo.cod
-                              ? 'bg-green-100 text-green-700'
-                              : 'bg-orange-100 text-orange-700'
+                              ? 'bg-emerald-100 text-emerald-800'
+                              : 'bg-amber-100 text-amber-800'
                               }`}>
                               {deliveryInfo.cod ? '✓ Cash on Delivery' : 'Prepaid Only'}
                             </span>
@@ -281,14 +281,14 @@ export default function Navbar() {
                     </div>
                   ) : (
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-full flex items-center justify-center shadow-md">
+                      <div className="w-10 h-10 bg-gradient-to-br from-rose-500 to-rose-700 rounded-full flex items-center justify-center shadow-md">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </div>
                       <div>
-                        <p className="text-red-700 font-bold text-base">Delivery not available</p>
-                        <p className="text-sm text-gray-600">to pincode <span className="font-semibold">{pincode}</span></p>
+                        <p className="text-rose-800 font-bold text-base">Delivery not available</p>
+                        <p className="text-sm text-stone-600">to pincode <span className="font-semibold">{pincode}</span></p>
                       </div>
                     </div>
                   )}
@@ -303,7 +303,7 @@ export default function Navbar() {
                     setShowPincodeModal(false);
                     setDeliveryInfo(null);
                   }}
-                  className="w-full px-6 py-3.5 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-xl hover:from-teal-700 hover:to-teal-800 transition-all duration-200 font-bold text-sm shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                  className="w-full px-6 py-3.5 bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white rounded-xl hover:brightness-110 transition-all duration-200 font-bold text-sm shadow-md hover:shadow-lg"
                 >
                   Apply This Location
                 </button>

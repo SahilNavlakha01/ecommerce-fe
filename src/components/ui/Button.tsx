@@ -9,11 +9,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-gradient-to-r from-teal-600 to-teal-700 text-white hover:from-teal-700 hover:to-teal-800 focus:ring-teal-500 shadow-md hover:shadow-lg",
-        secondary: "bg-white text-teal-700 border border-teal-200 hover:bg-teal-50 hover:border-teal-300 focus:ring-teal-500 shadow-sm hover:shadow-md",
-        luxury: "bg-gradient-to-r from-amber-200 to-amber-300 text-teal-900 hover:from-amber-300 hover:to-amber-400 focus:ring-amber-300 shadow-md hover:shadow-lg",
-        ghost: "text-teal-700 hover:bg-teal-50 hover:text-teal-800 focus:ring-teal-500",
-        destructive: "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500 shadow-md hover:shadow-lg"
+        primary: "bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white hover:brightness-110 focus:ring-rose-800 shadow-md hover:shadow-lg",
+        secondary: "bg-white text-rose-900 border border-stone-200 hover:bg-rose-50/70 hover:border-rose-300 focus:ring-rose-800 shadow-sm hover:shadow-md",
+        luxury: "bg-gradient-to-r from-amber-400 via-rose-500 to-amber-400 text-stone-950 hover:brightness-110 focus:ring-amber-400 shadow-md hover:shadow-lg font-bold",
+        ghost: "text-rose-900 hover:bg-rose-50 hover:text-rose-950 focus:ring-rose-800",
+        destructive: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-md hover:shadow-lg"
       },
       size: {
         sm: "h-8 px-3 text-sm",

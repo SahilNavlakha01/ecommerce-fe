@@ -114,19 +114,20 @@ export default function OrdersPage() {
     <AccountLayout>
       <PageTransition>
         <div className="space-y-6">
-          {/* Header */}
-          <div className="bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-white shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold-200/20 rounded-full blur-2xl"></div>
-            <div className="relative flex items-center gap-3">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border-2 border-white/30 shadow-lg">
-                <Package className="w-6 h-6 sm:w-8 sm:h-8" />
-              </div>
-              <div>
-                <h1 className="text-lg sm:text-2xl font-bold mb-0.5 sm:mb-1">My Orders</h1>
-                <p className="text-teal-100 text-xs sm:text-sm">
-                  {loading ? 'Loading...' : `${orders.length} ${orders.length === 1 ? 'order' : 'orders'}`}
-                </p>
+          {/* Header Banner */}
+          <div className="bg-gradient-to-br from-[#881337] via-[#9f1239] to-[#4c0519] rounded-3xl p-6 sm:p-8 text-white shadow-lg border border-amber-400/30 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="relative flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-amber-300/30 shadow-inner">
+                  <Package className="w-7 h-7 text-amber-200" />
+                </div>
+                <div>
+                  <h1 className="text-xl sm:text-2xl font-serif font-bold tracking-tight">Order History</h1>
+                  <p className="text-rose-200/90 text-xs sm:text-sm mt-0.5">
+                    {loading ? 'Checking your orders...' : `${orders.length} ${orders.length === 1 ? 'order placed' : 'orders placed'}`}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -134,97 +135,90 @@ export default function OrdersPage() {
           {/* Orders List */}
           <div className="space-y-4">
             {loading ? (
-              <>
+              <div className="space-y-4">
                 {Array.from({ length: 3 }).map((_, i) => (
                   <OrderItemSkeleton key={i} />
                 ))}
-              </>
+              </div>
             ) : orders.length === 0 ? (
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-12 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-teal-100 to-mint-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <ShoppingBag className="w-12 h-12 text-teal-600" />
+              <div className="bg-white rounded-3xl shadow-xs border border-stone-200/90 p-12 text-center">
+                <div className="w-20 h-20 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-rose-100">
+                  <ShoppingBag className="w-8 h-8 text-rose-900" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">No orders yet</h3>
-                <p className="text-gray-600 mb-8 max-w-md mx-auto">Start exploring our beautiful jewelry collection and place your first order.</p>
+                <h3 className="text-xl font-serif font-bold text-stone-900 mb-2">No orders placed yet</h3>
+                <p className="text-stone-500 text-xs sm:text-sm mb-6 max-w-sm mx-auto">
+                  Explore our curated fashion jewellery collections and elevate your styling.
+                </p>
                 <button
                   onClick={() => router.push('/shop')}
-                  className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-8 py-4 rounded-xl hover:from-teal-700 hover:to-teal-800 transition-all font-medium shadow-lg inline-flex items-center gap-2"
+                  className="bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white px-8 py-3.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-md inline-flex items-center gap-2 cursor-pointer"
                 >
-                  <ShoppingBag className="w-5 h-5" />
-                  Start Shopping
+                  <ShoppingBag className="w-4 h-4" />
+                  Explore Jewellery
                 </button>
               </div>
             ) : (
-              <>
+              <div className="space-y-4">
                 {orders.map((order) => (
                   <div 
                     key={order.id} 
                     onClick={() => handleOrderClick(order.id)}
-                    className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl hover:border-teal-200 transition-all cursor-pointer group"
+                    className="bg-white rounded-3xl shadow-xs border border-stone-200/90 p-5 sm:p-6 hover:shadow-md hover:border-rose-300/80 transition-all cursor-pointer group"
                   >
-                    <div className="flex flex-col sm:flex-row gap-6">
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center gap-4">
-                            <div className="w-14 h-14 bg-gradient-to-br from-teal-600 to-teal-700 rounded-xl flex items-center justify-center shadow-lg">
-                              <Package className="w-7 h-7 text-white" />
-                            </div>
-                            <div>
-                              <h3 className="font-bold text-gray-900 text-lg group-hover:text-teal-700 transition-colors">
-                                Order #{order.invoiceNumber}
-                              </h3>
-                              <p className="text-sm text-gray-600 mt-1">
-                                {new Date(order.createdAt).toLocaleDateString('en-GB', { 
-                                  year: 'numeric', 
-                                  month: 'long', 
-                                  day: 'numeric' 
-                                })}
-                              </p>
-                            </div>
-                          </div>
-                          <span className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(order.deliveryStatus)}`}>
-                            {getStatusText(order.deliveryStatus)}
-                          </span>
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex items-center gap-3.5">
+                        <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center border border-rose-200/60 group-hover:scale-105 transition-transform flex-shrink-0">
+                          <Package className="w-5 h-5 text-rose-900" />
                         </div>
-                        
-                        <div className="bg-gradient-to-br from-gray-50 to-stone-50 rounded-xl p-4 mb-4 border border-gray-200">
-                          <div className="flex items-start gap-2 text-sm text-gray-700">
-                            <MapPin className="w-4 h-4 mt-0.5 text-teal-600 flex-shrink-0" />
-                            <p className="flex-1">{order.line1}, {order.postal_code}</p>
-                          </div>
+                        <div>
+                          <h3 className="font-serif font-bold text-stone-900 text-base sm:text-lg group-hover:text-rose-900 transition-colors">
+                            Invoice #{order.invoiceNumber || `NS-${order.id}`}
+                          </h3>
+                          <p className="text-xs text-stone-400 mt-0.5">
+                            Placed on {new Date(order.createdAt).toLocaleDateString('en-IN', { 
+                              year: 'numeric', 
+                              month: 'short', 
+                              day: 'numeric' 
+                            })}
+                          </p>
                         </div>
-                        
-                        <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                          <div>
-                            <p className="text-2xl font-bold text-gray-900">
-                              ₹{((order as any).finalAmount ?? order.totalAmount).toLocaleString('en-IN')}
-                            </p>
-                            {Number(order.discount) > 0 && (
-                              <p className="text-xs text-green-600 font-medium">
-                                Coupon {order.couponCode ? `(${order.couponCode}) ` : ''}applied · Save ₹{Number(order.discount).toLocaleString('en-IN')}
-                              </p>
-                            )}
-                            {order.isCOD && Number(order.codCharges) > 0 ? (
-                              <div className="mt-1 space-y-0.5">
-                                <p className="text-xs text-green-600 font-medium">₹{Number(order.codCharges).toLocaleString('en-IN')} COD charge paid online</p>
-                                <p className="text-xs text-amber-600 font-medium">Pay ₹{(Number((order as any).finalAmount ?? order.totalAmount) - Number(order.codCharges)).toLocaleString('en-IN')} at delivery</p>
-                              </div>
-                            ) : (
-                            <p className={`text-sm font-medium mt-1 ${getPaymentStatusColor(order.paymentStatus)}`}>
-                              {getPaymentStatusText(order.paymentMethod ?? order.paymentStatus)}
-                            </p>
-                          )}
-                          </div>
-                          <div className="flex items-center text-teal-600 group-hover:text-teal-700 font-medium">
-                            <span className="mr-2">View Details</span>
-                            <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                          </div>
+                      </div>
+                      
+                      <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider border ${getStatusColor(order.deliveryStatus)}`}>
+                        {getStatusText(order.deliveryStatus)}
+                      </span>
+                    </div>
+                    
+                    {order.line1 && (
+                      <div className="bg-stone-50/70 rounded-2xl p-3.5 mb-4 border border-stone-200/70 flex items-start gap-2.5 text-xs text-stone-600">
+                        <MapPin className="w-4 h-4 text-rose-800 shrink-0 mt-0.5" />
+                        <p className="truncate flex-1">{order.line1}, {order.postal_code}</p>
+                      </div>
+                    )}
+                    
+                    <div className="flex items-center justify-between pt-4 border-t border-stone-100">
+                      <div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-xs uppercase tracking-wider font-bold text-stone-400">Total</span>
+                          <p className="text-xl sm:text-2xl font-extrabold text-stone-900">
+                            ₹{((order as any).finalAmount ?? order.totalAmount).toLocaleString('en-IN')}
+                          </p>
                         </div>
+                        {Number(order.discount) > 0 && (
+                          <p className="text-[11px] text-emerald-700 font-semibold mt-0.5">
+                            Discount applied: Saved ₹{Number(order.discount).toLocaleString('en-IN')}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="flex items-center text-xs font-bold text-rose-900 group-hover:text-rose-950 uppercase tracking-wider">
+                        <span>View Details</span>
+                        <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
                   </div>
                 ))}
-              </>
+              </div>
             )}
           </div>
         </div>

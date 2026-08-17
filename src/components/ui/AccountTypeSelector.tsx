@@ -21,7 +21,7 @@ const AccountTypeSelector: React.FC<AccountTypeSelectorProps> = ({
 
   return (
     <div className={`space-y-3 ${className}`}>
-      <p className="text-sm text-gray-700 bg-gray-50 px-3 py-2 rounded-lg font-medium text-center">
+      <p className="text-xs font-semibold uppercase tracking-wider text-stone-600 bg-stone-100/70 px-3 py-2 rounded-xl text-center">
         {allowedType ? 'Continue with your registered account' : 'How will you shop with us?'}
       </p>
       
@@ -30,14 +30,14 @@ const AccountTypeSelector: React.FC<AccountTypeSelectorProps> = ({
           <button
             onClick={() => onSelect('retail')}
             disabled={isLoading}
-            className="flex flex-col items-center gap-2 p-4 border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 rounded-xl transition-all disabled:opacity-60"
+            className="flex flex-col items-center gap-2 p-4 border-2 border-stone-200 hover:border-rose-700 hover:bg-rose-50/50 rounded-2xl transition-all disabled:opacity-60 group cursor-pointer"
           >
-            <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-              <ShoppingBag className="w-4 h-4 text-blue-600" />
+            <div className="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
+              <ShoppingBag className="w-5 h-5 text-rose-900" />
             </div>
             <div className="text-center">
-              <p className="text-sm font-bold text-gray-900">Retail Account</p>
-              <p className="text-xs text-blue-600 font-semibold">Personal Shopping</p>
+              <p className="text-xs sm:text-sm font-bold text-stone-900">Retail Account</p>
+              <p className="text-[11px] text-rose-700 font-semibold">Personal Shopping</p>
             </div>
           </button>
         )}
@@ -46,22 +46,22 @@ const AccountTypeSelector: React.FC<AccountTypeSelectorProps> = ({
           <button
             onClick={() => onSelect('b2b')}
             disabled={isLoading}
-            className="flex flex-col items-center gap-2 p-4 border-2 border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 rounded-xl transition-all disabled:opacity-60"
+            className="flex flex-col items-center gap-2 p-4 border-2 border-stone-200 hover:border-amber-600 hover:bg-amber-50/50 rounded-2xl transition-all disabled:opacity-60 group cursor-pointer"
           >
-            <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
-              <Store className="w-4 h-4 text-emerald-600" />
+            <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
+              <Store className="w-5 h-5 text-amber-800" />
             </div>
             <div className="text-center">
-              <p className="text-sm font-bold text-gray-900">Business Account</p>
-              <p className="text-xs text-emerald-600 font-semibold">Wholesale & B2B</p>
+              <p className="text-xs sm:text-sm font-bold text-stone-900">Business Account</p>
+              <p className="text-[11px] text-amber-700 font-semibold">Wholesale & B2B</p>
             </div>
           </button>
         )}
       </div>
 
       {isLoading && (
-        <div className="text-sm text-teal-600 text-center flex items-center justify-center gap-2">
-          <div className="animate-spin rounded-full h-4 w-4 border-2 border-teal-600 border-t-transparent"></div>
+        <div className="text-xs text-rose-900 font-semibold text-center flex items-center justify-center gap-2 py-2">
+          <div className="animate-spin rounded-full h-4 w-4 border-2 border-rose-900 border-t-transparent"></div>
           Setting up your account...
         </div>
       )}

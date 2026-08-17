@@ -36,12 +36,12 @@ export function AdminLoading({
 
   return (
     <div className="min-h-96 flex items-center justify-center">
-      <div className={`bg-white rounded-xl shadow-sm border border-gray-100 ${classes.container} text-center max-w-sm mx-auto`}>
+      <div className={`bg-white rounded-xl shadow-sm border border-stone-200 ${classes.container} text-center max-w-sm mx-auto`}>
         <div className="flex flex-col items-center space-y-3">
-          <div className={`animate-spin rounded-full ${classes.spinner} border-2 border-teal-200 border-t-teal-600`}></div>
+          <div className={`animate-spin rounded-full ${classes.spinner} border-2 border-rose-100 border-t-rose-900`}></div>
           <div className="space-y-1">
-            <h3 className={`${classes.title} font-semibold text-gray-900`}>{title}</h3>
-            <p className={`text-gray-600 ${classes.subtitle}`}>{subtitle}</p>
+            <h3 className={`${classes.title} font-semibold text-stone-900`}>{title}</h3>
+            <p className={`text-stone-500 ${classes.subtitle}`}>{subtitle}</p>
           </div>
         </div>
       </div>

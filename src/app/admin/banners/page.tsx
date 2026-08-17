@@ -499,7 +499,7 @@ export default function AdminBannersPage() {
               <div className="p-5 flex-1 overflow-y-auto space-y-3">
                 {loadingActive ? (
                   <div className="flex justify-center py-10">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-teal-600"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-2 border-rose-100 border-t-rose-800"></div>
                   </div>
                 ) : activeBannersForOrder.length === 0 ? (
                   <div className="text-center py-10 text-gray-500">

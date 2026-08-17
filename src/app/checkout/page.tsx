@@ -1558,14 +1558,14 @@ export default function CheckoutPage() {
       <SuccessModal />
       <CancelModal />
       {isProcessing && (
-        <div className="fixed inset-0 z-[9998] flex flex-col items-center justify-center" style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
-          <div className="bg-white rounded-2xl px-10 py-8 flex flex-col items-center gap-4 shadow-2xl">
+        <div className="fixed inset-0 z-[9998] flex flex-col items-center justify-center bg-black/60 backdrop-blur-xs">
+          <div className="bg-white rounded-2xl px-10 py-8 flex flex-col items-center gap-4 shadow-2xl border border-stone-200">
             <div className="relative w-16 h-16">
-              <div className="absolute inset-0 rounded-full border-4 border-teal-100" />
-              <div className="absolute inset-0 rounded-full border-4 border-teal-600 border-t-transparent animate-spin" />
+              <div className="absolute inset-0 rounded-full border-4 border-rose-100" />
+              <div className="absolute inset-0 rounded-full border-4 border-rose-900 border-t-transparent animate-spin" />
             </div>
-            <p className="text-lg font-bold text-gray-900">Processing your order...</p>
-            <p className="text-sm text-gray-500">Please do not close or refresh this page</p>
+            <p className="text-base font-bold text-stone-900">Processing your order...</p>
+            <p className="text-xs text-stone-500">Please do not close or refresh this page</p>
           </div>
         </div>
       )}

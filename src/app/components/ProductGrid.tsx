@@ -68,40 +68,60 @@ export default function ProductGrid() {
     }
   }, [openDropdown, showMobileFilters, priceRange])
 
-  useEffect(() => {
-    const handleScroll = () => closeOverlays()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [closeOverlays])
+const FALLBACK_FILTER_OPTIONS: Record<string, { id: string | number; name: string; productCount?: number }[]> = {
+  'Metal Type': [
+    { id: 'gold-plated', name: 'Gold Plated' },
+    { id: 'silver-finish', name: 'Silver Finish' },
+    { id: 'rose-gold', name: 'Rose Gold' },
+    { id: 'brass-alloy', name: 'Brass / Alloy' },
+    { id: 'oxidised-silver', name: 'Oxidised Silver' },
+  ],
+  'Gender': [
+    { id: 'women', name: 'Women' },
+    { id: 'unisex', name: 'Unisex' },
+    { id: 'men', name: 'Men' },
+    { id: 'girls', name: 'Girls' },
+  ],
+  'Occasion': [
+    { id: 'daily-wear', name: 'Daily Wear' },
+    { id: 'party-wear', name: 'Party & Casual' },
+    { id: 'festive', name: 'Festive & Wedding' },
+    { id: 'office', name: 'Work / Office' },
+  ],
+}
 
   const loadFilterOptions = async () => {
     try {
       const response = await GetAllConfig()
-      if (response?.data.data && Array.isArray(response.data.data)) {
-        const options: Record<string, any[]> = {}
+      const options: Record<string, any[]> = { ...FALLBACK_FILTER_OPTIONS }
 
+      if (response?.data.data && Array.isArray(response.data.data)) {
         response.data.data.forEach((config: any) => {
-          const configName = config.ConfigName
+          const configName = (config.ConfigName || '').toLowerCase()
           const category = Object.keys(configNameMapping).find(
-            key => configNameMapping[key] === configName
+            key => configNameMapping[key]?.toLowerCase() === configName || key.toLowerCase() === configName
           )
 
-          if (category) {
-            if (!options[category]) {
+          if (category && config.ConfigValue) {
+            if (!options[category] || options[category] === FALLBACK_FILTER_OPTIONS[category]) {
               options[category] = []
             }
-            options[category].push({
-              id: config.id,
-              name: config.ConfigValue,
-              productCount: config.productCount
-            })
+            // Avoid duplicates
+            if (!options[category].some(o => o.name === config.ConfigValue)) {
+              options[category].push({
+                id: config.id,
+                name: config.ConfigValue,
+                productCount: config.productCount
+              })
+            }
           }
         })
-
-        setFilterOptions(options)
       }
+
+      setFilterOptions(options)
     } catch (error) {
       console.error('Failed to load filter options:', error)
+      setFilterOptions(FALLBACK_FILTER_OPTIONS)
     }
   }
 
@@ -290,143 +310,168 @@ export default function ProductGrid() {
   return (
     <div>
       {/* Filter Bar */}
-      <div className="sticky top-0 bg-white border-b border-gray-200 z-40 shadow-sm hidden md:block">
-        <div className="px-4">
+      <div className="sticky top-0 bg-[#faf9f6] border-b border-stone-200/80 z-40 shadow-xs hidden md:block">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between py-3">
             {/* Filters - Left */}
-            <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
-              <span className="text-xs font-semibold text-gray-700 mr-2">FILTER:</span>
-              <button
-                id="price-filter-btn"
-                onClick={() => {
-                  if (openDropdown === 'price') {
-                    setOpenDropdown(null)
-                  } else {
-                    setDraftPriceRange(priceRange)
-                    setOpenDropdown('price')
-                  }
-                }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border-2 whitespace-nowrap transition-all ${openDropdown === 'price' ? 'bg-teal-600 text-white border-teal-600 shadow-sm' : 'border-gray-300 hover:border-teal-400 hover:bg-teal-50'}`}
-              >
-                Price
-                <svg className={`w-3 h-3 transition-transform ${openDropdown === 'price' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
-              </button>
-              {Object.keys(filterConfigs).map((category) => (
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-[11px] font-bold tracking-widest text-stone-500 uppercase mr-1">FILTER:</span>
+
+              {/* Price Filter */}
+              <div className="relative">
                 <button
-                  key={category}
-                  id={`${category.toLowerCase().replace(' ', '-')}-filter-btn`}
-                  onClick={() => setOpenDropdown(openDropdown === category ? null : category)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border-2 whitespace-nowrap transition-all ${openDropdown === category ? 'bg-teal-600 text-white border-teal-600 shadow-sm' : 'border-gray-300 hover:border-teal-400 hover:bg-teal-50'}`}
+                  type="button"
+                  id="price-filter-btn"
+                  onClick={() => {
+                    if (openDropdown === 'price') {
+                      setOpenDropdown(null)
+                    } else {
+                      setDraftPriceRange(priceRange)
+                      setOpenDropdown('price')
+                    }
+                  }}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full border whitespace-nowrap transition-all ${
+                    openDropdown === 'price'
+                      ? 'bg-rose-900 text-white border-rose-900 shadow-sm'
+                      : 'border-stone-300 bg-white text-stone-700 hover:border-rose-400 hover:bg-rose-50/60'
+                  }`}
                 >
-                  {category}
-                  <svg className={`w-3 h-3 transition-transform ${openDropdown === category ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                  Price
+                  <svg className={`w-3 h-3 transition-transform ${openDropdown === 'price' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </button>
-              ))}
+
+                {openDropdown === 'price' && (
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setOpenDropdown(null)} />
+                    <div className="absolute top-full left-0 mt-2 z-50 w-80 bg-white rounded-xl shadow-2xl border border-stone-200 p-5 animate-in fade-in duration-150">
+                      <PriceRangeControl
+                        value={draftPriceRange}
+                        onChange={setDraftPriceRange}
+                        onApply={applyPriceRangeChange}
+                        onReset={() => setDraftPriceRange(resetPriceRange())}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Category Dropdowns */}
+              {Object.keys(filterConfigs).map((category) => {
+                const options = filterOptions[category] || FALLBACK_FILTER_OPTIONS[category] || []
+                const isOpen = openDropdown === category
+
+                return (
+                  <div key={category} className="relative">
+                    <button
+                      type="button"
+                      id={`${category.toLowerCase().replace(/\s+/g, '-')}-filter-btn`}
+                      onClick={() => setOpenDropdown(isOpen ? null : category)}
+                      className={`flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full border whitespace-nowrap transition-all ${
+                        isOpen
+                          ? 'bg-rose-900 text-white border-rose-900 shadow-sm'
+                          : 'border-stone-300 bg-white text-stone-700 hover:border-rose-400 hover:bg-rose-50/60'
+                      }`}
+                    >
+                      {category}
+                      <svg className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+
+                    {isOpen && (
+                      <>
+                        <div className="fixed inset-0 z-40" onClick={() => setOpenDropdown(null)} />
+                        <div className="absolute top-full left-0 mt-2 z-50 w-72 bg-white rounded-xl shadow-2xl border border-stone-200 overflow-hidden animate-in fade-in duration-150">
+                          <div className="p-3 border-b border-stone-100 flex items-center justify-between bg-stone-50/50">
+                            <span className="text-xs font-bold uppercase tracking-wider text-stone-900">{category}</span>
+                            {selectedFilters[category]?.length ? (
+                              <button
+                                type="button"
+                                onClick={() => handleFilterChange(category, '')}
+                                className="text-[11px] text-rose-700 hover:text-rose-800 font-semibold"
+                              >
+                                Reset
+                              </button>
+                            ) : null}
+                          </div>
+
+                          <div className="py-1 max-h-72 overflow-y-auto scrollbar-thin-professional">
+                            {options.map((option) => {
+                              const isSelected = selectedFilters[category]?.includes(option.name)
+                              return (
+                                <button
+                                  type="button"
+                                  key={option.id || option.name}
+                                  onClick={() => handleFilterChange(category, option.name)}
+                                  className={`w-full flex items-center justify-between px-3.5 py-2.5 text-left transition-colors ${
+                                    isSelected ? 'bg-rose-50/80 text-rose-900 font-bold' : 'hover:bg-stone-50 text-stone-700'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-2.5">
+                                    <div className={`w-4 h-4 rounded flex items-center justify-center border transition-colors ${
+                                      isSelected ? 'bg-rose-900 border-rose-900 text-white' : 'border-stone-300 bg-white'
+                                    }`}>
+                                      {isSelected && (
+                                        <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                      )}
+                                    </div>
+                                    <span className="text-xs">{option.name}</span>
+                                  </div>
+                                  {option.productCount !== undefined && (
+                                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-stone-100 text-stone-500">
+                                      {option.productCount}
+                                    </span>
+                                  )}
+                                </button>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )
+              })}
             </div>
+
             {/* Right */}
             <div className="flex items-center gap-3">
-              <span className="text-xs text-gray-600 font-medium">{loading ? 'Loading...' : `${totalProducts} items`}</span>
-              <select value={sortBy} onChange={(e) => { setSortBy(e.target.value); setTimeout(() => navigateToShopWithFilters(), 100); }} className="text-xs border-2 border-gray-300 px-3 py-1.5 pr-7 bg-white rounded-full font-medium hover:border-teal-400 focus:outline-none focus:border-teal-500">
+              <span className="text-xs text-stone-500 font-medium">{loading ? 'Loading...' : `${totalProducts} designs`}</span>
+              <select value={sortBy} onChange={(e) => { setSortBy(e.target.value); setTimeout(() => navigateToShopWithFilters(), 100); }} className="text-xs border border-stone-300 px-3 py-1.5 pr-7 bg-white rounded-full font-semibold text-stone-800 hover:border-rose-400 focus:outline-none focus:border-rose-600 focus:ring-1 focus:ring-rose-500">
                 <option value="Featured">Featured</option>
                 <option value="PriceLowToHigh">Price: Low to High</option>
                 <option value="PriceHighToLow">Price: High to Low</option>
-                <option value="Newest">Newest</option>
-                {/* <option value="BestSelling">Best Selling</option> */}
-                {/* <option value="TopRated">Top Rated</option> */}
+                <option value="Newest">Newest Drops</option>
               </select>
               {(Object.values(selectedFilters).some(s => s?.length) || isPriceFilterActive(priceRange)) && (
-                <button onClick={clearAllFilters} className="text-xs font-semibold text-red-600 hover:text-red-700 px-3 py-1.5 rounded-full hover:bg-red-50 transition-all">Clear All</button>
+                <button onClick={clearAllFilters} className="text-xs font-bold text-rose-700 hover:text-rose-800 px-3 py-1.5 rounded-full hover:bg-rose-50 transition-all">Clear All</button>
               )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Price Dropdown - Enhanced Design */}
-      {openDropdown === 'price' && (() => {
-        const calculatePosition = () => {
-          const button = document.getElementById('price-filter-btn')
-          if (!button) return { top: 100, left: 20 }
-          const rect = button.getBoundingClientRect()
-          return { top: rect.bottom + 12, left: rect.left }
-        }
-        const pos = calculatePosition()
-        return (
-          <>
-            <div className="fixed inset-0 z-40" onClick={closeOverlays} />
-            <div
-              className="fixed z-50 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
-              style={{ top: `${pos.top}px`, left: `${pos.left}px` }}
-            >
-              <div className="p-5">
-                <PriceRangeControl
-                  value={draftPriceRange}
-                  onChange={setDraftPriceRange}
-                  onApply={applyPriceRangeChange}
-                  onReset={() => setDraftPriceRange(resetPriceRange())}
-                />
-              </div>
-            </div>
-          </>
-        )
-      })()}
-
-      {/* Category Dropdowns - Enhanced Design */}
-      {Object.keys(filterConfigs).map((category) => {
-        const options = filterOptions[category] || []
-        if (openDropdown !== category) return null
-
-        const calculatePosition = () => {
-          const button = document.getElementById(`${category.toLowerCase().replace(' ', '-')}-filter-btn`)
-          if (!button) return { top: 100, left: 20 }
-          const rect = button.getBoundingClientRect()
-          return { top: rect.bottom + 12, left: rect.left }
-        }
-        const pos = calculatePosition()
-
-        return (
-          <div key={category}>
-            <div className="fixed inset-0 z-40" onClick={closeOverlays} />
-            <div
-              className="fixed z-50 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
-              style={{ top: `${pos.top}px`, left: `${pos.left}px` }}
-            >
-              <div className="py-2 max-h-96 overflow-y-auto scrollbar-thin-professional">
-                {options.map((option) => (
-                  <button
-                    key={option.id}
-                    onClick={() => handleFilterChange(category, option.name)}
-                    className="w-full flex items-center justify-between px-5 py-3 text-left transition-all group hover:bg-gradient-to-r hover:from-teal-50 hover:to-teal-50/50"
-                  >
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-teal-700">{option.name}</span>
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 group-hover:bg-teal-100 group-hover:text-teal-700">
-                      {option.productCount}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        )
-      })}
-
       {/* Mobile Filter Buttons - Fixed Bottom */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
-        <div className="flex gap-3 p-3">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-stone-200 shadow-xl z-40">
+        <div className="flex gap-2.5 p-2.5">
           <button
             onClick={() => setShowMobileFilters(!showMobileFilters)}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 border border-stone-300 rounded-full bg-white hover:bg-stone-50 transition-colors shadow-xs"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z" />
             </svg>
-            <span className="font-medium text-sm">Filters</span>
+            <span className="font-bold text-xs uppercase tracking-wider text-stone-800">Filters</span>
             {(() => {
               const activeFiltersCount = Object.values(selectedFilters).reduce((count, selections) =>
                 count + (selections ? selections.length : 0), 0
               ) + (isPriceFilterActive(priceRange) ? 1 : 0)
               return activeFiltersCount > 0 ? (
-                <span className="bg-teal-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                <span className="bg-rose-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                   {activeFiltersCount}
                 </span>
               ) : null
@@ -435,12 +480,12 @@ export default function ProductGrid() {
 
           <button
             onClick={() => setOpenDropdown(openDropdown === 'mobile-sort' ? null : 'mobile-sort')}
-            className="flex-1 flex items-center justify-center gap-2 py-3 px-4 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 border border-stone-300 rounded-full bg-white hover:bg-stone-50 transition-colors shadow-xs"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7h18M3 12h9m-9 5h18" />
             </svg>
-            <span className="font-medium text-sm">Sort</span>
+            <span className="font-bold text-xs uppercase tracking-wider text-stone-800">Sort</span>
           </button>
         </div>
       </div>

@@ -150,320 +150,318 @@ export default function OrderDetailsPage() {
   return (
     <AccountLayout>
       <PageTransition>
-        <div className="space-y-5">
+        <div className="space-y-6">
 
-          {/* Back */}
-          <button onClick={() => router.push('/account/orders')} className="flex items-center text-teal-600 hover:text-teal-700 font-medium group">
-            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+          {/* Back Button */}
+          <button
+            onClick={() => router.push('/account/orders')}
+            className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-rose-900 hover:text-rose-950 transition-colors group cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4 mr-1.5 group-hover:-translate-x-1 transition-transform" />
             Back to Orders
           </button>
 
-          {/* Header card */}
-          <div className="bg-gradient-to-br from-teal-600 via-teal-700 to-teal-800 rounded-2xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+          {/* Header Card */}
+          <div className="bg-gradient-to-br from-[#881337] via-[#9f1239] to-[#4c0519] rounded-3xl p-6 sm:p-8 text-white shadow-lg border border-amber-400/30 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
             <div className="relative">
-              <div className="flex items-start justify-between gap-3 mb-5">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
                 <div>
-                  <p className="text-teal-200 text-xs font-medium uppercase tracking-wider mb-1">Invoice</p>
-                  <h1 className="text-xl sm:text-2xl font-bold">{order.invoiceNumber}</h1>
-                  <div className="flex items-center gap-1.5 mt-1 text-teal-100 text-xs">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/10 text-amber-200 text-[10px] font-bold uppercase tracking-widest mb-1.5 border border-white/10">
+                    Official Tax Invoice
+                  </div>
+                  <h1 className="text-xl sm:text-3xl font-serif font-bold tracking-tight">{order.invoiceNumber || `NS-${order.id}`}</h1>
+                  <div className="flex items-center gap-2 mt-1 text-rose-200 text-xs">
                     <Calendar className="w-3.5 h-3.5" />
-                    {new Date(order.createdAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    <span>Placed on {new Date(order.createdAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                   </div>
                 </div>
-                <div className="flex flex-col items-end gap-2">
-                  <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border ${statusCfg.bg} ${statusCfg.text} ${statusCfg.border}`}>
-                    <StatusIcon className="w-3.5 h-3.5" />{statusCfg.label}
+                
+                <div className="flex items-center gap-3">
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${statusCfg.bg} ${statusCfg.text} ${statusCfg.border}`}>
+                    <StatusIcon className="w-3.5 h-3.5" />
+                    {statusCfg.label}
                   </span>
-                  <button onClick={handleDownloadInvoice} className="bg-white/20 px-3 py-1.5 rounded-lg hover:bg-white/30 transition-all flex items-center gap-1.5 border border-white/30 text-xs font-medium">
-                    <Download className="w-3.5 h-3.5" />Download Invoice
+                  <button
+                    onClick={handleDownloadInvoice}
+                    className="bg-white text-rose-950 px-4 py-2 rounded-xl hover:bg-rose-50 transition-all flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider shadow-sm cursor-pointer"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    Invoice PDF
                   </button>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-2">
+
+              {/* Quick KPI stats */}
+              <div className="grid grid-cols-3 gap-2.5">
                 {[
-                  { icon: ShoppingBag, label: 'Items', value: summary?.itemCount ?? orderItems.length },
-                  { icon: CreditCard, label: 'Payment', value: summary?.isCOD ? 'COD' : 'Online', sub: summary?.isCOD && summary?.codCharges > 0 ? 'Charge paid online' : null },
-                  { icon: Package, label: 'Total', value: `₹${(summary?.finalAmount ?? (order as any).finalAmount ?? order.totalAmount)?.toLocaleString('en-IN')}` },
+                  { icon: ShoppingBag, label: 'Items Ordered', value: summary?.itemCount ?? orderItems.length },
+                  { icon: CreditCard, label: 'Payment Mode', value: summary?.isCOD ? 'Cash on Delivery' : 'Online Paid', sub: summary?.isCOD && summary?.codCharges > 0 ? 'COD charge paid' : null },
+                  { icon: Package, label: 'Final Total', value: `₹${(summary?.finalAmount ?? (order as any).finalAmount ?? order.totalAmount)?.toLocaleString('en-IN')}` },
                 ].map(({ icon: Icon, label, value, sub }) => (
-                  <div key={label} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
-                    <div className="flex items-center gap-1.5 mb-1"><Icon className="w-3.5 h-3.5 text-teal-200" /><p className="text-teal-200 text-xs">{label}</p></div>
-                    <p className="font-bold text-sm sm:text-base">{value}</p>
-                    {sub && <p className="text-teal-200 text-[10px] mt-0.5">{sub}</p>}
+                  <div key={label} className="bg-white/10 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/15">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Icon className="w-3.5 h-3.5 text-amber-300" />
+                      <p className="text-rose-200 text-[11px] font-medium uppercase tracking-wider">{label}</p>
+                    </div>
+                    <p className="font-serif font-bold text-sm sm:text-lg text-white">{value}</p>
+                    {sub && <p className="text-amber-200 text-[10px] mt-0.5">{sub}</p>}
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Delivery info + Price breakdown */}
+          {/* Delivery info & Price breakdown */}
           {summary && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-                <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Delivery Info</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+              
+              {/* Delivery Info */}
+              <div className="bg-white rounded-3xl shadow-xs border border-stone-200/90 p-5 sm:p-6">
+                <h2 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">Delivery & Courier</h2>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-3 bg-teal-50 rounded-xl border border-teal-100">
-                    <div className="w-9 h-9 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0"><Truck className="w-4 h-4 text-teal-600" /></div>
-                    <div><p className="text-xs text-gray-500">Shipping Partner</p><p className="font-semibold text-gray-900 text-sm">{summary.shippingPartner}</p></div>
-                  </div>
-                  {tracking?.courier_name && tracking.courier_name !== summary.shippingPartner && (
-                    <div className="flex items-center gap-3 p-3 bg-purple-50 rounded-xl border border-purple-100">
-                      <div className="w-9 h-9 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0"><Truck className="w-4 h-4 text-purple-600" /></div>
-                      <div><p className="text-xs text-gray-500">Assigned Courier</p><p className="font-semibold text-gray-900 text-sm">{tracking.courier_name}</p></div>
+                  <div className="flex items-center gap-3 p-3.5 bg-rose-50/50 rounded-2xl border border-rose-200/60">
+                    <div className="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Truck className="w-5 h-5 text-rose-900" />
                     </div>
-                  )}
-                  {tracking?.awb_code && (
-                    <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
-                      <div className="w-9 h-9 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0"><Package className="w-4 h-4 text-gray-600" /></div>
-                      <div><p className="text-xs text-gray-500">AWB Code</p><p className="font-semibold text-gray-900 text-sm font-mono">{tracking.awb_code}</p></div>
-                    </div>
-                  )}
-                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-xl border border-green-100">
-                    <div className="w-9 h-9 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0"><Calendar className="w-4 h-4 text-green-600" /></div>
                     <div>
-                      <p className="text-xs text-gray-500">Estimated Delivery</p>
-                      <p className="font-semibold text-gray-900 text-sm">
+                      <p className="text-[10px] uppercase font-bold text-stone-400">Shipping Partner</p>
+                      <p className="font-bold text-stone-900 text-sm">{summary.shippingPartner || 'Shiprocket Express'}</p>
+                    </div>
+                  </div>
+
+                  {tracking?.awb_code && (
+                    <div className="flex items-center gap-3 p-3.5 bg-stone-50 rounded-2xl border border-stone-200">
+                      <div className="w-10 h-10 bg-stone-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Package className="w-5 h-5 text-stone-700" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase font-bold text-stone-400">AWB Tracking Code</p>
+                        <p className="font-mono font-bold text-stone-900 text-sm">{tracking.awb_code}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex items-center gap-3 p-3.5 bg-emerald-50/60 rounded-2xl border border-emerald-200/70">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Calendar className="w-5 h-5 text-emerald-800" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase font-bold text-emerald-700">Estimated Delivery Date</p>
+                      <p className="font-bold text-emerald-950 text-sm">
                         {tracking?.edd
                           ? new Date(tracking.edd).toLocaleDateString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })
                           : new Date(summary.deliveryEstimate).toLocaleDateString('en-IN', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
-                    <div className="w-9 h-9 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0"><MapPin className="w-4 h-4 text-gray-600" /></div>
-                    <div><p className="text-xs text-gray-500">Delivery Address</p><p className="font-semibold text-gray-900 text-sm">{order.line1}, {order.postal_code}</p></div>
+
+                  <div className="flex items-center gap-3 p-3.5 bg-stone-50 rounded-2xl border border-stone-200">
+                    <div className="w-10 h-10 bg-stone-200 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5 text-stone-700" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[10px] uppercase font-bold text-stone-400">Destination Address</p>
+                      <p className="font-bold text-stone-900 text-xs truncate">{order.line1}, {order.postal_code}</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-                <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Price Breakdown</h2>
-                <div className="space-y-2.5 text-sm">
-                  <div className="flex justify-between text-gray-600"><span>Subtotal ({summary.itemCount} {summary.itemCount === 1 ? 'item' : 'items'})</span><span className="font-medium text-gray-900">₹{summary.subtotal.toLocaleString('en-IN')}</span></div>
-                  <div className="flex justify-between text-gray-600"><span>GST ({summary.gstRate}%)</span><span className="font-medium text-gray-900">₹{summary.gstAmount.toFixed(2)}</span></div>
-                  <div className="flex justify-between text-gray-600">
-                    <span>Shipping</span>
-                    {summary.shippingCharge > 0 ? <span className="font-medium text-gray-900">₹{summary.shippingCharge.toLocaleString('en-IN')}</span> : <span className="font-medium text-green-600">Free</span>}
+              {/* Price Breakdown */}
+              <div className="bg-white rounded-3xl shadow-xs border border-stone-200/90 p-5 sm:p-6">
+                <h2 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">Price Summary</h2>
+                <div className="space-y-2.5 text-xs sm:text-sm">
+                  <div className="flex justify-between text-stone-600">
+                    <span>Subtotal ({summary.itemCount} {summary.itemCount === 1 ? 'item' : 'items'})</span>
+                    <span className="font-semibold text-stone-900">₹{summary.subtotal.toLocaleString('en-IN')}</span>
+                  </div>
+                  <div className="flex justify-between text-stone-600">
+                    <span>GST ({summary.gstRate}%)</span>
+                    <span className="font-semibold text-stone-900">₹{summary.gstAmount.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between text-stone-600">
+                    <span>Express Shipping</span>
+                    {summary.shippingCharge > 0 ? (
+                      <span className="font-semibold text-stone-900">₹{summary.shippingCharge.toLocaleString('en-IN')}</span>
+                    ) : (
+                      <span className="font-bold text-emerald-700">Free</span>
+                    )}
                   </div>
                   {summary.isCOD && summary.codCharges > 0 && (
                     <>
-                      <div className="flex justify-between text-gray-600">
-                        <span className="flex items-center gap-1">COD Charge <span className="text-xs bg-green-100 text-green-700 border border-green-200 px-1.5 py-0.5 rounded-full">Paid Online</span></span>
-                        <span className="font-medium text-gray-900">₹{summary.codCharges.toLocaleString('en-IN')}</span>
+                      <div className="flex justify-between text-stone-600">
+                        <span>COD Charge <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full font-bold">Paid Online</span></span>
+                        <span className="font-semibold text-stone-900">₹{summary.codCharges.toLocaleString('en-IN')}</span>
                       </div>
-                      <div className="flex justify-between text-teal-700 font-semibold">
-                        <span>Amount Due at Delivery</span>
+                      <div className="flex justify-between text-rose-900 font-bold">
+                        <span>Due on Delivery</span>
                         <span>₹{(summary.finalAmount - summary.codCharges).toLocaleString('en-IN')}</span>
                       </div>
                     </>
                   )}
-                  {summary.giftingCharges > 0 && <div className="flex justify-between text-gray-600"><span>🎁 Gift Wrapping</span><span className="font-medium text-gray-900">₹{summary.giftingCharges.toLocaleString('en-IN')}</span></div>}
-                  {Number(order.discount) > 0 && <div className="flex justify-between text-green-600"><span>Coupon {order.couponCode ? `(${order.couponCode})` : ''}</span><span className="font-medium">-₹{Number(order.discount).toLocaleString('en-IN')}</span></div>}
-                  <div className="border-t-2 border-dashed border-gray-200 pt-2.5">
-                    <div className="flex justify-between"><span className="font-bold text-gray-900">Grand Total</span><span className="font-bold text-lg text-teal-600">₹{summary.finalAmount.toLocaleString('en-IN')}</span></div>
-                    {summary.isCOD && summary.codCharges > 0 && (
-                      <div className="bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 text-xs text-amber-800 mt-2">
-                        <span className="font-semibold">₹{summary.codCharges.toLocaleString('en-IN')}</span> COD charge paid online · Pay <span className="font-semibold">₹{(summary.finalAmount - summary.codCharges).toLocaleString('en-IN')}</span> at delivery
-                      </div>
-                    )}
+                  {Number(order.discount) > 0 && (
+                    <div className="flex justify-between text-emerald-700 font-semibold">
+                      <span>Discount / Coupon Applied</span>
+                      <span>-₹{Number(order.discount).toLocaleString('en-IN')}</span>
+                    </div>
+                  )}
+
+                  <div className="border-t-2 border-dashed border-stone-200 pt-3 mt-3">
+                    <div className="flex justify-between items-baseline">
+                      <span className="font-serif font-bold text-base text-stone-900">Grand Total</span>
+                      <span className="font-extrabold text-2xl text-rose-900">₹{summary.finalAmount.toLocaleString('en-IN')}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Shipment Tracking */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6">
-            <div className="flex items-center justify-between mb-5">
-              <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Shipment Tracking</h2>
+          {/* Shipment Tracking Timeline */}
+          <div className="bg-white rounded-3xl shadow-xs border border-stone-200/90 p-5 sm:p-7">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-base sm:text-lg font-serif font-bold text-stone-900">Shipment Progress</h2>
+                <p className="text-xs text-stone-400">Live parcel movements & courier status updates</p>
+              </div>
               {tracking?.tracking_url && (
-                <a href={tracking.tracking_url} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-xs font-semibold text-teal-600 hover:text-teal-700">
-                  <ExternalLink className="w-3.5 h-3.5" />Track on courier
+                <a
+                  href={tracking.tracking_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-rose-900 hover:text-rose-950 uppercase tracking-wider underline underline-offset-4"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Live Courier Page
                 </a>
               )}
             </div>
 
-            {tracking ? (
-              <>
-                {/* Status banner */}
-                <div className={`flex items-center gap-3 p-4 rounded-xl border mb-5 ${trackingStatusCfg?.bg ?? 'bg-gray-50'} ${trackingStatusCfg?.border ?? 'border-gray-200'}`}>
-                  <div className="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Truck className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-xs text-gray-500">Current Status</p>
-                    <p className={`font-bold text-base ${trackingStatusCfg?.color ?? 'text-gray-700'}`}>{trackingStatusCfg?.label ?? (tracking.shipment_status || tracking.current_status || 'Processing')}</p>
-                    {tracking.courier_name && <p className="text-xs text-gray-500 mt-0.5">{tracking.courier_name}</p>}
-                  </div>
-                  {tracking.awb_code && (
-                    <span className="text-xs text-gray-500 bg-white/80 px-2 py-1 rounded-lg font-mono border border-gray-200">AWB: {tracking.awb_code}</span>
-                  )}
+            {/* Step progress bar */}
+            {statusCfg.step >= 0 && (
+              <div className="flex items-center justify-between relative px-2 mb-8 mt-2">
+                <div className="absolute top-4 left-6 right-6 h-1 bg-stone-100 z-0">
+                  <div className="h-full bg-gradient-to-r from-rose-900 to-amber-500 transition-all duration-500" style={{ width: `${progressPct}%` }} />
                 </div>
-
-                {/* Step progress bar */}
-                {statusCfg.step >= 0 && (
-                  <div className="flex items-center justify-between relative px-2 mb-6">
-                    <div className="absolute top-4 left-6 right-6 h-0.5 bg-gray-200 z-0">
-                      <div className="h-full bg-teal-500 transition-all duration-500" style={{ width: `${progressPct}%` }} />
+                {STEPS.map((step, idx) => {
+                  const done = stepDone(idx)
+                  const Icon = step.icon
+                  return (
+                    <div key={step.key} className="flex flex-col items-center gap-2 z-10">
+                      <div className={`w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all ${
+                        done ? 'bg-rose-900 border-rose-900 text-white shadow-xs' : 'bg-white border-stone-200 text-stone-400'
+                      }`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <span className={`text-[11px] font-bold text-center leading-tight ${done ? 'text-rose-950' : 'text-stone-400'}`}>
+                        {step.label}
+                      </span>
                     </div>
-                    {STEPS.map((step, idx) => {
-                      const done = stepDone(idx)
-                      const Icon = step.icon
-                      return (
-                        <div key={step.key} className="flex flex-col items-center gap-1.5 z-10">
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${done ? 'bg-teal-600 border-teal-600' : 'bg-white border-gray-300'}`}>
-                            <Icon className={`w-4 h-4 ${done ? 'text-white' : 'text-gray-400'}`} />
-                          </div>
-                          <span className={`text-xs font-medium text-center leading-tight ${done ? 'text-teal-700' : 'text-gray-400'}`}>{step.label}</span>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Activity History Timeline */}
+            {activities.length > 0 && (
+              <div className="border-t border-stone-100 pt-6">
+                <h3 className="text-xs font-bold text-stone-500 uppercase tracking-widest mb-4">Detailed Checkpoints</h3>
+                <div className="space-y-3">
+                  {activities.map((a: any, i: number) => {
+                    const isLatest = i === 0
+                    const dt = new Date(a.date)
+                    return (
+                      <div key={i} className={`flex items-start gap-3 p-3.5 rounded-2xl border transition-all ${
+                        isLatest ? 'bg-rose-50/50 border-rose-200 shadow-2xs' : 'bg-stone-50/50 border-stone-200/70'
+                      }`}>
+                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
+                          isLatest ? 'bg-rose-900 text-amber-200' : 'bg-stone-200 text-stone-600'
+                        }`}>
+                          <Clock className="w-4 h-4" />
                         </div>
-                      )
-                    })}
-                  </div>
-                )}
-
-                {/* Activity timeline */}
-                {activities.length > 0 && (
-                  <div className="border-t border-gray-100 pt-5">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-1 h-4 bg-teal-600 rounded-full" />
-                        <p className="text-sm font-bold text-gray-900">Shipment Activity</p>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <p className="text-xs sm:text-sm font-bold text-stone-900">{a.activity}</p>
+                            {isLatest && (
+                              <span className="text-[10px] uppercase font-bold bg-rose-900 text-white px-2 py-0.5 rounded-full">
+                                Latest
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[11px] text-stone-500 mt-0.5">
+                            {dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })} · {dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+                            {a.location ? ` — ${a.location}` : ''}
+                          </p>
+                        </div>
                       </div>
-                      <span className="text-xs text-gray-400 bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-full">{activities.length} update{activities.length > 1 ? 's' : ''}</span>
-                    </div>
-                    <div className="relative">
-                      <div className="absolute left-5 top-5 bottom-5 w-0.5 bg-gradient-to-b from-teal-400 via-gray-200 to-gray-100 z-0" />
-                      <div className="space-y-3">
-                        {activities.map((a: any, i: number) => {
-                          const isLatest = i === 0
-                          const dt = new Date(a.date)
-                          const iconMap: Record<string, any> = { BKD: Truck, PCUP: Package, OFD: Truck, DL: CheckCircle2 }
-                          const Icon = iconMap[a.status] ?? MapPin
-                          return (
-                            <div key={i} className="relative flex gap-3 z-10">
-                              <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 border-2 shadow-sm ${isLatest ? 'bg-teal-600 border-teal-600' : 'bg-gray-50 border-gray-200'}`}>
-                                <Icon className={`w-4 h-4 ${isLatest ? 'text-white' : 'text-gray-500'}`} />
-                              </div>
-                              <div className={`flex-1 rounded-xl border p-3 ${isLatest ? 'bg-gradient-to-r from-teal-50 to-emerald-50 border-teal-200 shadow-sm' : 'bg-white border-gray-100'}`}>
-                                <div className="flex items-start justify-between gap-2 flex-wrap">
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <p className={`text-sm font-bold ${isLatest ? 'text-teal-800' : 'text-gray-800'}`}>{a.activity}</p>
-                                    {isLatest && <span className="text-[10px] font-bold bg-teal-600 text-white px-2 py-0.5 rounded-full uppercase tracking-wide">Latest</span>}
-                                  </div>
-                                  {a['sr-status-label'] && (
-                                    <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border flex-shrink-0 ${isLatest ? 'bg-teal-100 text-teal-700 border-teal-200' : 'bg-gray-50 text-gray-500 border-gray-200'}`}>
-                                      {a['sr-status-label']}
-                                    </span>
-                                  )}
-                                </div>
-                                <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                                  <div className="flex items-center gap-1">
-                                    <Clock className={`w-3 h-3 ${isLatest ? 'text-teal-500' : 'text-gray-400'}`} />
-                                    <span className={`text-xs ${isLatest ? 'text-teal-600 font-medium' : 'text-gray-500'}`}>
-                                      {dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })} · {dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
-                                    </span>
-                                  </div>
-                                  {a.location && (
-                                    <div className="flex items-center gap-1">
-                                      <MapPin className={`w-3 h-3 flex-shrink-0 ${isLatest ? 'text-teal-500' : 'text-gray-400'}`} />
-                                      <span className={`text-xs truncate max-w-[180px] sm:max-w-none ${isLatest ? 'text-teal-600' : 'text-gray-400'}`}>{a.location}</span>
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* No AWB yet — show pending state inline */}
-                {!tracking.awb_code && activities.length === 0 && (
-                  <div className="flex flex-col items-center py-4 text-center border-t border-gray-100 mt-2">
-                    <p className="text-sm text-gray-500">Your shipment is registered on Shiprocket but a courier hasn't been assigned yet.</p>
-                    <p className="text-xs text-gray-400 mt-1">Live tracking will appear here once the shipment is picked up.</p>
-                    {summary?.deliveryEstimate && (
-                      <div className="mt-3 flex items-center gap-2 bg-green-50 border border-green-100 rounded-xl px-4 py-2">
-                        <Calendar className="w-4 h-4 text-green-600" />
-                        <span className="text-sm font-medium text-green-700">Expected by {new Date(summary.deliveryEstimate).toLocaleDateString('en-IN', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="flex flex-col items-center py-6 text-center">
-                <div className="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center mb-3 border border-orange-100">
-                  <Truck className="w-7 h-7 text-orange-400" />
+                    )
+                  })}
                 </div>
-                <p className="font-semibold text-gray-800 mb-1">Tracking not yet available</p>
-                <p className="text-xs text-gray-500 max-w-xs">Your order is being processed. Tracking will appear once the shipment is created.</p>
-                {summary?.deliveryEstimate && (
-                  <div className="mt-4 flex items-center gap-2 bg-green-50 border border-green-100 rounded-xl px-4 py-2">
-                    <Calendar className="w-4 h-4 text-green-600" />
-                    <span className="text-sm font-medium text-green-700">Expected by {new Date(summary.deliveryEstimate).toLocaleDateString('en-IN', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                  </div>
-                )}
               </div>
             )}
           </div>
 
           {/* Order Items */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6">
-            <h2 className="text-base font-bold text-gray-900 mb-4">Order Items</h2>
-            <div className="space-y-3">
+          <div className="bg-white rounded-3xl shadow-xs border border-stone-200/90 p-5 sm:p-7">
+            <h2 className="text-base sm:text-lg font-serif font-bold text-stone-900 mb-4">Ordered Jewellery Items</h2>
+            <div className="space-y-4">
               {orderItems.map((item) => {
                 const userReview = getUserReview(item.productId)
                 return (
-                  <div key={item.id} className="bg-gradient-to-br from-gray-50 to-stone-50 border border-gray-200 rounded-xl p-3 sm:p-4">
-                    <div className="flex gap-3">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg overflow-hidden flex-shrink-0 border border-gray-200">
+                  <div key={item.id} className="bg-stone-50/60 border border-stone-200/80 rounded-2xl p-4 sm:p-5">
+                    <div className="flex gap-4">
+                      <div className="w-20 h-20 bg-white rounded-xl overflow-hidden flex-shrink-0 border border-stone-200 p-1">
                         {item.imageUrl ? (
-                          <img src={item.imageUrl.startsWith('http') ? item.imageUrl : `${BASE_URL.replace('/api/', '')}${item.imageUrl}`} alt={item.name} className="w-full h-full object-cover"
-                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
+                          <img
+                            src={item.imageUrl.startsWith('http') ? item.imageUrl : `${BASE_URL.replace('/api/', '')}${item.imageUrl}`}
+                            alt={item.name}
+                            className="w-full h-full object-cover rounded-lg"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                          />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gray-100"><Package className="w-8 h-8 text-gray-400" /></div>
+                          <div className="w-full h-full flex items-center justify-center bg-stone-100"><Package className="w-8 h-8 text-stone-400" /></div>
                         )}
                       </div>
+
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-sm sm:text-base mb-2">{item.name}</h3>
-                        {userReview && (
-                          <div className="mb-2 bg-white p-2 sm:p-3 rounded-lg border border-gray-200">
-                            <div className="flex items-center justify-between mb-1">
-                              <div className="flex items-center gap-2">
-                                <div className="flex text-teal-500">
-                                  {[...Array(5)].map((_, i) => <Star key={i} className={`w-3.5 h-3.5 ${i < userReview.rating ? 'fill-current' : ''}`} />)}
-                                </div>
-                                <span className="text-xs font-medium text-gray-600">({userReview.rating}.0)</span>
-                              </div>
-                              <button onClick={() => deleteUserReview(userReview.id)} className="text-red-500 hover:text-red-700 text-xs font-medium flex items-center gap-1">
-                                <Trash2 className="w-3 h-3" /><span className="hidden sm:inline">Remove</span>
-                              </button>
-                            </div>
-                            {userReview.reviewText && <p className="text-xs sm:text-sm text-gray-700 mb-1">"{userReview.reviewText}"</p>}
-                            <span className="text-xs text-gray-500">{new Date(userReview.createdAt).toLocaleDateString('en-GB')}</span>
-                          </div>
-                        )}
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2">
-                          {[
-                            { label: 'SKU', value: item.skuCode },
-                            { label: 'Weight', value: `${item.weight}g` },
-                            { label: 'Qty', value: item.quantity },
-                            item.size ? { label: 'Size', value: item.size, teal: true } : null,
-                            { label: 'Price', value: `₹${item.subtotal?.toLocaleString('en-IN')}`, teal: true },
-                          ].filter(Boolean).map((f: any) => (
-                            <div key={f.label} className={`px-2 py-1.5 rounded-lg border text-xs ${f.teal ? 'bg-teal-50 border-teal-200' : 'bg-white border-gray-200'}`}>
-                              <span className={`block ${f.teal ? 'text-teal-700' : 'text-gray-500'}`}>{f.label}</span>
-                              <p className={`font-semibold ${f.teal ? 'text-teal-700' : 'text-gray-900'}`}>{f.value}</p>
-                            </div>
-                          ))}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                          <h3 className="font-serif font-bold text-stone-900 text-sm sm:text-base">{item.name}</h3>
+                          <span className="font-extrabold text-base text-rose-900">₹{item.subtotal?.toLocaleString('en-IN')}</span>
                         </div>
-                        {!userReview && (
-                          <button onClick={() => setReviewModal(item)} className="text-teal-600 hover:text-teal-700 text-xs sm:text-sm font-medium flex items-center gap-1">
-                            <Star className="w-3.5 h-3.5" />Add Review
+
+                        <div className="flex flex-wrap gap-2 text-xs text-stone-600 mb-3">
+                          <span className="bg-white px-2.5 py-1 rounded-lg border border-stone-200 font-medium">SKU: {item.skuCode || 'NS-JW'}</span>
+                          <span className="bg-white px-2.5 py-1 rounded-lg border border-stone-200 font-medium">Qty: {item.quantity}</span>
+                          {item.size && (
+                            <span className="bg-rose-50 text-rose-900 px-2.5 py-1 rounded-lg border border-rose-200 font-bold">Size: {item.size}</span>
+                          )}
+                        </div>
+
+                        {userReview ? (
+                          <div className="bg-white p-3 rounded-xl border border-stone-200 flex items-center justify-between gap-3">
+                            <div>
+                              <div className="flex text-amber-500 text-xs">
+                                {[...Array(5)].map((_, i) => (
+                                  <span key={i}>{i < userReview.rating ? '★' : '☆'}</span>
+                                ))}
+                              </div>
+                              {userReview.reviewText && <p className="text-xs text-stone-700 mt-1 italic">"{userReview.reviewText}"</p>}
+                            </div>
+                            <button
+                              onClick={() => deleteUserReview(userReview.id)}
+                              className="text-red-500 hover:text-red-700 text-xs font-bold cursor-pointer"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => setReviewModal(item)}
+                            className="inline-flex items-center gap-1 text-xs font-bold text-rose-900 hover:text-rose-950 uppercase tracking-wider cursor-pointer"
+                          >
+                            <Star className="w-3.5 h-3.5" />
+                            Write a Review
                           </button>
                         )}
                       </div>
@@ -473,35 +471,53 @@ export default function OrderDetailsPage() {
               })}
             </div>
           </div>
+
         </div>
       </PageTransition>
 
       {/* Review Modal */}
       {reviewModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Add Review</h3>
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-3">Rating *</label>
-              <div className="flex gap-2 justify-center">
+        <div className="fixed inset-0 bg-stone-950/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-stone-200 animate-fade-up">
+            <div className="h-1.5 w-full bg-gradient-to-r from-amber-400 via-rose-700 to-rose-950 -mt-6 -mx-6 mb-6 rounded-t-3xl" />
+            <h3 className="text-xl font-serif font-bold text-stone-900 mb-1">Review this Jewellery Piece</h3>
+            <p className="text-xs text-stone-500 mb-5">{reviewModal.name}</p>
+
+            <div className="mb-5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Rating</label>
+              <div className="flex gap-2 justify-center py-2">
                 {[1, 2, 3, 4, 5].map(star => (
-                  <button key={star} onClick={() => setRating(star)} className="transition-all">
-                    <Star className={`w-10 h-10 ${star <= rating ? 'fill-teal-500 text-teal-500' : 'text-gray-300'}`} />
+                  <button key={star} onClick={() => setRating(star)} className="text-2xl transition-transform hover:scale-110 cursor-pointer">
+                    <span className={star <= rating ? 'text-amber-400' : 'text-stone-300'}>★</span>
                   </button>
                 ))}
               </div>
             </div>
+
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Comment</label>
-              <textarea value={comment} onChange={e => setComment(e.target.value)} rows={4}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
-                placeholder="Share your experience..." />
+              <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">Review Comment</label>
+              <textarea
+                value={comment}
+                onChange={e => setComment(e.target.value)}
+                rows={3}
+                className="w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-rose-100 focus:border-rose-800 text-sm bg-stone-50/50 focus:bg-white resize-none"
+                placeholder="Share your thoughts on design, finishing, and shine..."
+              />
             </div>
+
             <div className="flex gap-3">
-              <button onClick={() => setReviewModal(null)} className="flex-1 px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 font-medium">Cancel</button>
-              <button onClick={submitReview} disabled={!rating || submitting}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-xl hover:from-teal-700 hover:to-teal-800 disabled:opacity-50 font-medium">
-                {submitting ? 'Submitting...' : 'Submit'}
+              <button
+                onClick={() => setReviewModal(null)}
+                className="flex-1 py-3 border border-stone-300 text-stone-700 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-stone-50 cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={submitReview}
+                disabled={!rating || submitting}
+                className="flex-1 py-3 bg-gradient-to-r from-rose-900 via-rose-800 to-rose-950 text-white rounded-xl font-bold text-xs uppercase tracking-wider hover:brightness-110 disabled:opacity-50 cursor-pointer shadow-md"
+              >
+                {submitting ? 'Submitting...' : 'Submit Review'}
               </button>
             </div>
           </div>

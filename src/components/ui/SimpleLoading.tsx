@@ -15,8 +15,8 @@ export function SimpleLoading({ message = "Loading...", size = 'md' }: SimpleLoa
   return (
     <div className="flex items-center justify-center p-8">
       <div className="flex flex-col items-center space-y-3">
-        <div className={`animate-spin rounded-full ${sizeClasses[size]} border-2 border-teal-200 border-t-teal-600`}></div>
-        <p className="text-gray-600 text-sm">{message}</p>
+        <div className={`animate-spin rounded-full ${sizeClasses[size]} border-2 border-rose-100 border-t-rose-900`}></div>
+        <p className="text-stone-600 text-xs sm:text-sm font-medium">{message}</p>
       </div>
     </div>
   )

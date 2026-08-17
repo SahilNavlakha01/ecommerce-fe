@@ -57,12 +57,12 @@ function ProductCard({
   const displayReviewCount = Number(reviewCount) || 0
 
   return (
-    <div className="group relative bg-white rounded-lg sm:rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full min-w-0">
+    <div className="group relative bg-white rounded-xl overflow-hidden border border-stone-200/80 hover:border-stone-300 hover:shadow-md transition-all duration-200 flex flex-col h-full min-w-0">
 
-      {/* ── Image area ── */}
-      <div className="relative overflow-hidden aspect-square bg-gray-50 flex-shrink-0">
+      {/* ── Image Area (Clean Square Aspect Ratio) ── */}
+      <div className="relative overflow-hidden aspect-square bg-[#f8f8f8] flex-shrink-0">
 
-        {/* Wishlist */}
+        {/* Floating Wishlist Button */}
         <div className="absolute top-2 right-2 z-20">
           {id && (
             <WishlistButton
@@ -88,110 +88,108 @@ function ProductCard({
           )}
         </div>
 
-        {/* Discount badge */}
+        {/* Discount Badge */}
         {discountPct > 0 && !isB2bUser && (
           <div className="absolute top-2 left-2 z-20">
-            <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
-              -{discountPct}%
+            <span className="bg-rose-800 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-xs tracking-wider uppercase">
+              {discountPct}% OFF
             </span>
           </div>
         )}
 
-        {/* Custom badge */}
+        {/* Custom Badge */}
         {badge && !isB2bUser && !discountPct && (
           <div className="absolute top-2 left-2 z-20">
-            <span className="bg-gradient-to-r from-rose-600 to-pink-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
+            <span className="bg-amber-500 text-stone-950 text-[10px] font-bold px-2 py-0.5 rounded shadow-xs tracking-wider uppercase">
               {badge}
             </span>
           </div>
         )}
 
+        {/* Rating Floating Chip (Bottom-Left on Photo) */}
+        {(displayRating > 0 || displayReviewCount > 0) && (
+          <div className="absolute bottom-2 left-2 z-20 flex items-center gap-1 bg-white/95 backdrop-blur-xs px-1.5 py-0.5 rounded shadow-xs border border-stone-200/60 pointer-events-none">
+            <span className="text-[10px] font-bold text-stone-800 flex items-center gap-0.5">
+              <span className="text-amber-500">★</span> {displayRating > 0 ? displayRating.toFixed(1) : '4.5'}
+            </span>
+            {displayReviewCount > 0 && (
+              <>
+                <span className="text-stone-300 text-[9px]">|</span>
+                <span className="text-stone-500 text-[10px] font-medium">{displayReviewCount}</span>
+              </>
+            )}
+          </div>
+        )}
+
         {/* Out of stock overlay */}
         {isOutOfStock && (
-          <div className="absolute inset-0 bg-black/40 z-10 flex items-center justify-center">
-            <span className="bg-white/90 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-xs z-30 flex items-center justify-center">
+            <span className="bg-white text-stone-900 text-xs font-bold px-3 py-1 rounded shadow uppercase tracking-wider">
               Out of Stock
             </span>
           </div>
         )}
 
-        {/* Product image */}
+        {/* Product Image */}
         <Link href={`/products/${id}`} className="block w-full h-full">
           {!imageError && imageSrc ? (
             <>
               <img
                 src={imageSrc}
                 alt={name}
-                className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                className={`w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                 onLoad={() => setImageLoaded(true)}
                 onError={() => { setImageError(true); setImageSrc('') }}
                 loading="lazy"
               />
-              {!imageLoaded && <div className="absolute inset-0 bg-gray-100 animate-pulse" />}
+              {!imageLoaded && <div className="absolute inset-0 bg-stone-100 animate-pulse" />}
             </>
           ) : (
             <img src={getPlaceholderImage()} alt={name} className="w-full h-full object-cover" />
           )}
-
         </Link>
       </div>
 
-      {/* ── Content ── */}
-      <div className="px-2 sm:px-3 pt-2 sm:pt-2.5 pb-2 sm:pb-3 flex flex-col flex-1 gap-1 sm:gap-1.5 min-w-0">
+      {/* ── Content Area ── */}
+      <div className="p-2.5 sm:p-3 flex flex-col flex-1 gap-1 min-w-0 bg-white">
+        
+        {/* Brand Tag */}
+        <span className="text-[9px] sm:text-[10px] font-bold tracking-widest text-stone-400 uppercase leading-none">
+          NS Collection
+        </span>
 
-        {/* Rating */}
-        {(displayRating > 0 || displayReviewCount > 0) && (
-          <div className="flex items-center gap-1">
-            <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} className={`w-2.5 h-2.5 sm:w-3 sm:h-3 ${i < Math.floor(displayRating) ? 'text-amber-400' : 'text-gray-200'}`} fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <span className="text-[11px] text-gray-400 font-medium">({displayReviewCount})</span>
-          </div>
-        )}
-
-        {/* Name */}
+        {/* Product Title */}
         <Link href={`/products/${id}`} className="block">
-          <h3 className="text-xs sm:text-[13px] md:text-sm font-bold text-gray-900 line-clamp-2 hover:text-teal-600 transition-colors leading-snug break-words">
+          <h3 className="text-xs sm:text-[13px] font-medium text-stone-800 line-clamp-1 group-hover:text-rose-800 transition-colors leading-snug break-words" title={name}>
             {name}
           </h3>
         </Link>
 
-        {/* Description — only 1 line, muted, clearly secondary */}
-        {description && (
-          <p className="hidden sm:block text-[11px] text-gray-400 line-clamp-1 leading-relaxed break-words">
-            {description}
-          </p>
-        )}
-
-        {/* Price row */}
-        <div className="mt-auto pt-1 flex items-center gap-1 sm:gap-2 flex-wrap">
-          <span className="text-sm sm:text-sm md:text-[15px] font-extrabold text-gray-900">
+        {/* Price Row */}
+        <div className="mt-auto pt-1 flex items-baseline gap-1.5 flex-wrap">
+          <span className="text-sm sm:text-base font-bold text-stone-950">
             ₹{typeof numericPrice === "number" ? numericPrice.toLocaleString("en-IN") : numericPrice}
           </span>
           {numericOldPrice > 0 && !isB2bUser && (
-            <span className="text-[11px] text-gray-400 line-through font-medium">
+            <span className="text-[11px] sm:text-xs text-stone-400 line-through font-normal">
               ₹{numericOldPrice.toLocaleString("en-IN")}
             </span>
           )}
           {discountPct > 0 && !isB2bUser && (
-            <span className="hidden sm:inline text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md">
-              {discountPct}% off
+            <span className="text-[10px] sm:text-[11px] font-bold text-rose-700">
+              ({discountPct}% OFF)
             </span>
           )}
         </div>
 
-        {/* Add to Cart */}
-        <div className="mt-1 flex gap-1.5">
+        {/* Add to Bag Action */}
+        <div className="mt-2">
           {isOutOfStock ? (
-            <div className="w-full text-center py-1.5 sm:py-2 rounded-lg bg-gray-100 text-gray-400 text-[10px] sm:text-xs font-semibold tracking-wide">
+            <div className="w-full text-center py-1.5 rounded-lg bg-stone-100 text-stone-400 text-xs font-semibold uppercase tracking-wider">
               Out of Stock
             </div>
           ) : id ? (
-            <AddToCartButton productId={id} className="flex-1 !text-[11px] sm:!text-xs !py-1.5 sm:!py-2" />
+            <AddToCartButton productId={id} className="w-full !text-xs !py-2 !rounded-lg" />
           ) : null}
         </div>
       </div>

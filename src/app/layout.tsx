@@ -43,7 +43,7 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
         <link rel="dns-prefetch" href="//localhost:5000" />
         <link rel="dns-prefetch" href="//jwellerybackend-production.up.railway.app" />
         <link rel="canonical" href={SITE_URL} />
@@ -52,8 +52,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className="font-sans antialiased font-smooth">
-        <NextTopLoader color="#026670" showSpinner={false} height={3} shadow="0 0 10px #026670,0 0 5px #026670" />
+      <body className="font-sans antialiased font-smooth bg-[#faf9f6] text-[#18181b]">
+        <NextTopLoader color="#be123c" showSpinner={false} height={3} shadow="0 0 10px #be123c,0 0 5px #e11d48" />
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WTJ8BQG5" height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} />
@@ -61,13 +61,13 @@ export default function RootLayout({
         <ReduxProvider>
           <ServerWarmupInit />
           <Suspense fallback={
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-stone-50 via-white to-vanilla-50">
+            <div className="min-h-screen flex items-center justify-center bg-[#faf9f6]">
               <div className="flex flex-col items-center space-y-4">
                 <div className="relative">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600"></div>
-                  <div className="absolute inset-0 rounded-full h-12 w-12 border-t-2 border-teal-300 animate-pulse"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-2 border-rose-100 border-t-rose-900"></div>
+                  <div className="absolute inset-0 rounded-full h-12 w-12 border-2 border-transparent border-t-amber-400 animate-ping opacity-30"></div>
                 </div>
-                <p className="text-teal-700 font-medium">Loading...</p>
+                <p className="text-xs font-bold tracking-widest uppercase text-stone-600">Loading NS Collection...</p>
               </div>
             </div>
           }>

@@ -55,7 +55,7 @@ export default function StatusChecker({ fileLogId, onStatusUpdate, interval = 30
   if (!status) {
     return (
       <div className="flex items-center space-x-2 text-sm text-gray-600">
-        <div className="w-4 h-4 border-2 border-gray-300 border-t-teal-600 rounded-full animate-spin"></div>
+        <div className="w-4 h-4 border-2 border-stone-300 border-t-rose-800 rounded-full animate-spin"></div>
         <span>Checking status...</span>
       </div>
     )

@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn'
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   className?: string
-  color?: 'teal' | 'gold' | 'white' | 'gray'
+  color?: 'rose' | 'teal' | 'gold' | 'white' | 'gray'
 }
 
 const sizeClasses = {
@@ -16,16 +16,17 @@ const sizeClasses = {
 }
 
 const colorClasses = {
-  teal: 'border-teal-600 border-t-transparent',
-  gold: 'border-gold-300 border-t-transparent',
+  rose: 'border-rose-900 border-t-transparent',
+  teal: 'border-rose-900 border-t-transparent',
+  gold: 'border-amber-400 border-t-transparent',
   white: 'border-white border-t-transparent',
-  gray: 'border-gray-400 border-t-transparent'
+  gray: 'border-stone-400 border-t-transparent'
 }
 
 export function LoadingSpinner({ 
   size = 'md', 
   className,
-  color = 'teal'
+  color = 'rose'
 }: LoadingSpinnerProps) {
   return (
     <div 

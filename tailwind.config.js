@@ -9,96 +9,112 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Luxury Brand Palette
+        // Luxury Nykaa / Palmonas / Myntra Brand Palette
         primary: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#026670', // Deep Teal - Main brand color
-          950: '#042f2e',
+          50: '#fff1f2',
+          100: '#ffe4e6',
+          200: '#fecdd3',
+          300: '#fda4af',
+          400: '#fb7185',
+          500: '#f43f5e',
+          600: '#e11d48',
+          700: '#be123c',
+          800: '#9f1239',
+          900: '#881337', // Deep Velvet Wine / Rose - Main brand color
+          950: '#4c0519',
         },
-        // Deep Teal (Primary Brand Color)
+        // Nykaa Pink & Rose Gold Accents
+        nykaa: {
+          50: '#fff1f5',
+          100: '#ffe4ec',
+          200: '#fecddc',
+          300: '#fea3c0',
+          400: '#fd689b',
+          500: '#ff3f6c', // Myntra / Nykaa signature pink
+          600: '#e11d48',
+          700: '#be123c',
+          800: '#9f1239',
+          900: '#831843',
+        },
+        // Deep Rose / Crimson (Harmonious with legacy teal classes)
         teal: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#026670', // Deep Teal
-          950: '#042f2e',
+          50: '#fff1f2',
+          100: '#ffe4e6',
+          200: '#fecdd3',
+          300: '#fda4af',
+          400: '#fb7185',
+          500: '#e11d48',
+          600: '#be123c', // Luxurious Deep Rose
+          700: '#9f1239', // Velvet Ruby
+          800: '#881337', // Deep Burgundy
+          900: '#4c0519', // Dark Onyx Rose
+          950: '#2e020e',
         },
-        // Mint (Accent Color)
-        mint: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#9fedd7', // Mint - Accent color
-          400: '#86efac',
-          500: '#4ade80',
-          600: '#22c55e',
-        },
-        // Vanilla (Soft Background)
-        vanilla: {
-          50: '#fffbeb',
-          100: '#fef9c7', // Vanilla - Soft background
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-        },
-        // Gold (Highlight/CTA)
+        // Champagne & 18K Warm Gold
         gold: {
           50: '#fffbeb',
           100: '#fef3c7',
-          200: '#fce181', // Gold - Highlight color
-          300: '#fbbf24',
-          400: '#f59e0b',
-          500: '#d97706',
-          600: '#b45309',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
         },
-        // Stone (Neutral Base)
+        // Rose Gold & Champagne Amber
+        champagne: {
+          50: '#fffaf5',
+          100: '#fdf2e9',
+          200: '#fbe2cf',
+          300: '#f7caa9',
+          400: '#f1a87b',
+          500: '#e58550',
+          600: '#d56934',
+          700: '#b15127',
+          800: '#8e4224',
+          900: '#743921',
+        },
+        // Soft Pearlescent Warm Alabaster Neutral Base
         stone: {
-          50: '#edeae5', // Warm Gray - Neutral base
-          100: '#f5f5f4',
-          200: '#e7e5e4',
-          300: '#d6d3d1',
-          400: '#a8a29e',
-          500: '#78716c',
-          600: '#57534e',
+          50: '#faf9f6', // Warm Pearl
+          100: '#f5f4f0',
+          200: '#e8e6e1',
+          300: '#d5d2cb',
+          400: '#a6a29a',
+          500: '#76736c',
+          600: '#55534d',
+          700: '#3c3b37',
+          800: '#262523',
+          900: '#18181b', // Obsidian Dark
         },
-        // Enhanced Luxury Colors
+        // Enhanced Luxury Specific Colors
         luxury: {
-          teal: '#026670',    // Deep Teal
-          mint: '#9fedd7',    // Mint
-          vanilla: '#fef9c7', // Vanilla
-          gold: '#fce181',    // Gold
-          stone: '#edeae5',   // Warm Gray
-          platinum: '#e5e7eb',
-          diamond: '#f8fafc',
+          primary: '#9f1239',   // Velvet Rose
+          secondary: '#ff3f6c', // Nykaa Rose Pink
+          gold: '#d4af37',      // Champagne 18k Gold
+          rosegold: '#e0a96d',  // Rose Gold
+          pearl: '#fcfbf9',     // Warm Alabaster
+          onyx: '#18181b',      // Jet Obsidian
+          platinum: '#f4f4f5',
+          blush: '#fff1f2',
+          sand: '#fbf8f3',
         },
         status: {
-          success: '#10b981',
-          warning: '#f59e0b',
-          error: '#ef4444',
-          info: '#3b82f6',
+          success: '#059669',
+          warning: '#d97706',
+          error: '#dc2626',
+          info: '#2563eb',
         }
       },
       fontFamily: {
-        // Use Nunito Sans as the professional font family across the entire site
-        sans: ['Nunito Sans', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        display: ['Nunito Sans', 'system-ui', 'sans-serif'],
-        luxury: ['Nunito Sans', 'system-ui', 'sans-serif'],
-        heading: ['Nunito Sans', 'system-ui', 'sans-serif'],
-        body: ['Nunito Sans', 'system-ui', 'sans-serif'],
+        sans: ['"Nunito Sans"', '"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+        display: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+        heading: ['"Playfair Display"', '"Nunito Sans"', 'system-ui', 'sans-serif'],
+        body: ['"Nunito Sans"', 'system-ui', 'sans-serif'],
+        luxury: ['"Playfair Display"', 'serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.025em' }],
